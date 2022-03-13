@@ -3,8 +3,9 @@
 global $Controllers;
 $Controllers = [];
 
-define('ABSOLUTEPATH', str_replace( '\Services\Engineer', '' ,__DIR__  ));
-define('URI', str_replace('WPA/','',parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+define('ABSOLUTEPATH', str_replace( '\Services\Engineer', '' , __DIR__ ));
+echo die('ABSOLUTEPATH -> ' . str_replace( '\Services\Engineer', '' , __DIR__ ));
+define('URI', str_replace('WPA/', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
 $CALL = explode("/", URI);
 
 $empty = array_count_values($CALL)[""];
