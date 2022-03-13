@@ -12,7 +12,7 @@ class Guard extends Database
             $Result = parent::Exists();
         }
         
-        return [ 'error' => !$Result , '' => ($Result) ? 'Access granted' : 'Wrong Token' ];
+        return [ 'error' => !$Result , 'msg' => ($Result) ? 'Access granted' : 'Wrong Token' ];
 
     }
 
