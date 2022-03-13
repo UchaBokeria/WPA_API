@@ -26,8 +26,11 @@ function LearnScheme($dir){
 
         else if(strpos($ff,'.Controller.php')) {
             $name = str_replace('.Controller.php', '', $ff);
-            echo "<br>" . realpath($dir.DIRECTORY_SEPARATOR.$ff) . "<br>";
-            $Controllers[$name] = str_replace( ABSOLUTEPATH, '' , realpath($dir.DIRECTORY_SEPARATOR.$ff) );
+
+            $Controllers[$name] = str_replace( ABSOLUTEPATH, '' , str_replace(
+                '/home/u609332810/domains/wpatbilisicongress.com/public_html/Server','',
+                realpath($dir.DIRECTORY_SEPARATOR.$ff)) 
+            );
         }
     }
 
