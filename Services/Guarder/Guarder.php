@@ -8,6 +8,7 @@ class Guard extends Database
 
         if($_SERVER["token"] == "") $Result = false;
         else {
+            echo $_SERVER["HTTP_TOKEN"];
             $UserInfo = parent::GET(" SELECT id FROM users WHERE token = :token ;", [ 'token' => $_SERVER["HTTP_TOKEN"] ]);
             $Result = parent::Exists();
         }
