@@ -38,5 +38,3 @@ function LearnScheme($dir){
 
 LearnScheme('API');
 define('CONTROLLERS_SCHEME', $Controllers);
-
-echo json_encode(CONTROLLERS_SCHEME);
