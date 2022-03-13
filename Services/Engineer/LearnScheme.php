@@ -3,8 +3,8 @@
 global $Controllers;
 $Controllers = [];
 
-define('ABSOLUTEPATH', str_replace( '\Services\Engineer', '' , __DIR__ ));
-echo die('ABSOLUTEPATH -> ' . str_replace( '\Services\Engineer', '' , __DIR__ ));
+define('ABSOLUTEPATH', str_replace('/home/u609332810/domains/wpatbilisicongress.com/public_html/Server/Services/Engineer','',__DIR__));
+//echo die('ABSOLUTEPATH -> ' . str_replace( '\Services\Engineer', '' , __DIR__ ));
 define('URI', str_replace('WPA/', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
 $CALL = explode("/", URI);
 
