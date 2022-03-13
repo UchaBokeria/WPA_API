@@ -10,7 +10,7 @@
 
         public function Create()
         {
-            var_dump(GUARDIAN);
+            
             if(GUARDIAN['error']) return GUARDIAN;
 
             parent::SET("   INSERT INTO Simposyums SET  fullname = :fullname,
