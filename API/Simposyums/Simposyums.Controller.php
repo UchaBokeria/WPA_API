@@ -17,8 +17,10 @@
                                                         text = :text,
                                                         chair_name = :chair_name,
                                                         chair_country = :chair_country,
+                                                        chair_city = :chair_city,
                                                         cochair_name = :cochair_name,
                                                         cochair_country = :cochair_country,
+                                                        cochair_email = :cochair_email,
                                                         created_datetime = NOW(); ",
                                                     [
                                                         'fullname' => $_POST["fullname"],
@@ -27,8 +29,10 @@
                                                         'title' => $_POST["title"],
                                                         'chair_name' => $_POST["chair_name"],
                                                         'chair_country' => $_POST["chair_country"],
+                                                        'chair_email' => $_POST["chair_email"],
                                                         'cochair_name' => $_POST["cochair_name"],
-                                                        'cochair_country' => $_POST["cochair_country"]
+                                                        'cochair_country' => $_POST["cochair_country"],
+                                                        'cochair_email' => $_POST["cochair_email"]
                                                     ]
                                                 );
             $simposyum_id = parent::GetLastId();
