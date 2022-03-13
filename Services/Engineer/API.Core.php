@@ -10,4 +10,5 @@ $Router = $CALL[COUNT($CALL)-1];
 $Request = $CALL[COUNT($CALL)];
 
 define('GUARDIAN', (new Guard())->checkToken());
+var_dump(GUARDIAN);
 echo json_encode( ( new $Router() )->$Request() );
