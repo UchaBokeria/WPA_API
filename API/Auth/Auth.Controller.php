@@ -9,7 +9,7 @@
             $email = $_POST["email"];
             $Password = $_POST["pass"];
 
-            $User = parent::GET("   SELECT password, id FROM users 
+            $User = parent::GET("   SELECT * FROM users 
                                     WHERE  email = :email", [ 'email' => $email ] );
 
             $id = $User[0]["id"];
@@ -34,8 +34,9 @@
                                 "ip" => $ip,
                                 "id" => $id
                             ]);
-            
-            return [ 'error' => false, 'msg' => $NewToken ];
+
+            unset($User[0]['password']);
+            return [ 'error' => false, 'msg' => $NewToken, 'userData' => $User ];
 
         }
 
