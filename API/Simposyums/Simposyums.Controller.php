@@ -17,10 +17,8 @@
                                                         text = :text,
                                                         chair_name = :chair_name,
                                                         chair_country = :chair_country,
-                                                        chair_city = :chair_city,
                                                         cochair_name = :cochair_name,
                                                         cochair_country = :cochair_country,
-                                                        cochair_city = :cochair_city,
                                                         created_datetime = NOW(); ",
                                                     [
                                                         'fullname' => $_POST["fullname"],
@@ -29,10 +27,8 @@
                                                         'title' => $_POST["title"],
                                                         'chair_name' => $_POST["chair_name"],
                                                         'chair_country' => $_POST["chair_country"],
-                                                        'chair_city' => $_POST["chair_city"],
                                                         'cochair_name' => $_POST["cochair_name"],
-                                                        'cochair_country' => $_POST["cochair_country"],
-                                                        'cochair_city' => $_POST["cochair_city"]
+                                                        'cochair_country' => $_POST["cochair_country"]
                                                     ]
                                                 );
             $simposyum_id = parent::GetLastId();
@@ -43,7 +39,6 @@
                                                                         title = :title,
                                                                         name = :name,
                                                                         email = :email,
-                                                                        city = :city,
                                                                         country = :country,
                                                                         create_datetime = NOW() ; ", 
                                             [
@@ -51,7 +46,6 @@
                                                 'title' => $value["title"],
                                                 'name' => $value["name"],
                                                 'email' => $value["email"],
-                                                'city' => $value["city"],
                                                 'country' => $value["country"]
                                             ]);
             }
