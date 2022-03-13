@@ -10,7 +10,7 @@
             $Password = $_POST["pass"];
 
             $User = parent::GET("   SELECT * FROM users 
-                                    WHERE  email = :email", [ 'email' => $email ] );
+                                    WHERE  email = :email LIMIT 1", [ 'email' => $email ] );
 
             $id = $User[0]["id"];
             $HashPassword = $User[0]["password"];
@@ -35,7 +35,10 @@
                                 "id" => $id
                             ]);
 
+            unset($User[0]['logged']);
             unset($User[0]['password']);
+            unset($User[0]['last_ip_address']);
+            unset($User[0]['last_login_datetime']);
             return [ 'error' => false, 'msg' => $NewToken, 'userData' => $User ];
 
         }
