@@ -6,10 +6,10 @@ class Guard extends Database
     public function checkToken()
     {
 
-        if($_SERVER["HTTP_TOKEN"] == "") 
+        if($_SERVER["HTTPS_TOKEN"] == "") 
             return [ 'error' => true , 'msg' => 'Empty Token' ];
 
-        $UserInfo = parent::GET(" SELECT id FROM users WHERE token = :token ;", [ 'token' => $_SERVER["HTTP_TOKEN"] ]);
+        $UserInfo = parent::GET(" SELECT id FROM users WHERE token = :token ;", [ 'token' => $_SERVER["HTTPS_TOKEN"] ]);
         $Result = parent::Exists();
 
         
