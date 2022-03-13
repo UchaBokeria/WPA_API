@@ -17,7 +17,7 @@
                                                         text = :text,
                                                         chair_name = :chair_name,
                                                         chair_country = :chair_country,
-                                                        chair_city = :chair_city,
+                                                        chair_email = :chair_email,
                                                         cochair_name = :cochair_name,
                                                         cochair_country = :cochair_country,
                                                         cochair_email = :cochair_email,
