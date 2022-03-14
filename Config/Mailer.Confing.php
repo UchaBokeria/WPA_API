@@ -2,8 +2,8 @@
 
 define('MAILSMTPDEBUG', 2);
 define('MAILSMTPAUTH', true);
-define('MAILUSERNAME', 'wpatbilisicongress@gmail.com');
-define('MAILFORMNAME', 'support@wpa.ge');
+define('MAILUSERNAME', 'support@wpatbilisicongress.com');
+define('MAILFORMNAME', 'support@wpatbilisicongress.com');
 define('MAILPASSWORD', 'Wpatbilisi2022!');
 define('MAILSMTPSECURE', 'tls');
 define('MAILDEBUGOUTPUT', 'html');

@@ -3,13 +3,9 @@
     date_default_timezone_set('Etc/UTC');
     header('Content-Type: text/html; charset=utf-8');
 
-    require '../../Config/MySQL.Config.php';
-    require '../../Config/Mailer.Confing';
-
-    require '../Database/Database.php';
-    require './Exception.php';
-    require './PHPMailer.php';
-    require './SMTP.php';
+    require './Services/Mailer/Exception.php';
+    require './Services/Mailer/PHPMailer.php';
+    require './Services/Mailer/SMTP.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
@@ -67,12 +63,4 @@
         }
 
     }
-
-    var_dump( (new SmtpMailer([
-            'cc_address' => 'TEST cc_address',
-            'bcc_address' => 'TEST bcc_address',
-            'address' => 'ucha1bokeria@gmail.com',
-            'subject' => 'TEST subject',
-            'body' => 'TEST body'
-        ]))->Send()
-    );
+    
