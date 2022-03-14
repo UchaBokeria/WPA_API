@@ -1,6 +1,6 @@
 <?php
 
-define('MAILSMTPDEBUG', 2);
+define('MAILSMTPDEBUG', 1);
 define('MAILSMTPAUTH', true);
 define('MAILUSERNAME', 'support@elitelectronics.ge');
 define('MAILFORMNAME', 'support@elitelectronics.ge');
