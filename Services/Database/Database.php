@@ -48,7 +48,6 @@
         
         public function connect()
         {
-            var_dump($this);die();
             try {
 
                 $conn = new PDO("mysql:host=$this->host;dbname=$this->database;charset=$this->charset", $this->username, $this->password, $this->options);
