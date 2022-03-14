@@ -1,10 +1,9 @@
 <?php
 
-// Configs
-require "./Config/ErrorReporting.Config.php";
-require "./Config/Headers.Config.php";
-require "./Config/MySQL.Config.php";
+/* Configs */
+require "./Services/Engineer/LearnConfigs.Scheme.php";
+require "./Services/Engineer/LearnControllers.Scheme.php";
 
-// Services
+/* Services */
 require "./Services/Database/Database.php";
 require "./Services/Engineer/API.Core.php";
