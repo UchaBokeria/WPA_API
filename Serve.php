@@ -25,8 +25,8 @@ define('MAILHOST', 'ssl://smtp.titan.support@wpatbilisicongress.com');
 define('MAILCHARSET', 'UTF-8');
 define('MAILPORT', 465);
 
-require "./Config/Mailer.Confing";
-require "./Config/Mailer.Confing";
+require "./Config/Mailer.Config.php";
+require "./Config/Mailer.Config.php";
 
 require "./Services/Database/Database.php";
 require "./Services/Mailer/SmtpMailer.php";
