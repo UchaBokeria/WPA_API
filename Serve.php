@@ -19,7 +19,7 @@ define('MAILSMTPAUTH', true);
 define('MAILUSERNAME', 'support@wpatbilisicongress.com');
 define('MAILFORMNAME', 'support@wpatbilisicongress.com');
 define('MAILPASSWORD', 'Wpatbilisi2022!');
-define('MAILSMTPSECURE', 'tls');
+define('MAILSMTPSECURE', 'ssl');
 define('MAILDEBUGOUTPUT', 'html');
 define('MAILHOST', 'ssl://smtp.titan.support@wpatbilisicongress.com');
 define('MAILCHARSET', 'UTF-8');
