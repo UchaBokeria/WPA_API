@@ -26,7 +26,7 @@ define('MAILCHARSET', 'UTF-8');
 define('MAILPORT', 465);
 
 require "./Config/Mailer.Config.php";
-require "./Config/Mailer.Config.php";
+require "./Config/MySQL.Config.php";
 
 require "./Services/Database/Database.php";
 require "./Services/Mailer/SmtpMailer.php";
