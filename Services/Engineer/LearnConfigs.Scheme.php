@@ -34,7 +34,7 @@ function LearnConfigs($dir){
 
             include_once ".".str_replace(DIRECTORY_SEPARATOR , '/', str_replace( ABSOLUTEPATH, '' , str_replace(
                 '/home/u609332810/domains/wpatbilisicongress.com/public_html/Server','',
-                realpath(".".$dir.DIRECTORY_SEPARATOR.$ff)));
+                realpath(".".$dir.DIRECTORY_SEPARATOR.$ff))));
         }
     }
 
