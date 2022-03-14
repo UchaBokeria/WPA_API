@@ -14,7 +14,7 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-define('MAILSMTPDEBUG', 4);
+define('MAILSMTPDEBUG', 3);
 define('MAILSMTPAUTH', true);
 define('MAILUSERNAME', 'wpatbilisicongress@gmail.com');
 define('MAILFORMNAME', 'wpatbilisicongress@gmail.com');
