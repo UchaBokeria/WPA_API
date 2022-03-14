@@ -93,6 +93,17 @@
 
             return [ 'error' => false , 'msg' => 'Account Has Been Created' ];
             
+            // send to wpa about signup
+            
         }
+
+        public function reset()
+        {
+            // generate key
+            // send to mail
+            // listen to request
+            // after request change reset in db
+        }
+
 
     }
