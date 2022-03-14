@@ -26,13 +26,8 @@ function LearnConfigs($dir){
 
         else if(strpos($ff,'.Config.php')) {
             $name = str_replace('.Config.php', '', $ff);
-
-            $Configs[$name] = str_replace( ABSOLUTEPATH, '' , str_replace(
-                '/home/u609332810/domains/wpatbilisicongress.com/public_html/Server','',
-                realpath(".".$dir.DIRECTORY_SEPARATOR.$ff)) 
-            );
-
-            include_once "./Config/$ff";
+            $Configs[$name] = "./Config/$ff";
+            include_once $Configs[$name];
         }
     }
 
