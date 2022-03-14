@@ -45,7 +45,7 @@
 
         public function SignUp()
         {
-            var_dump($_POST);die();
+
             $matches = parent::GET("SELECT id FROM users WHERE email = :email; ", [ 'email' => $_POST["email"] ]);
             
             if(COUNT($matches) >= 1) 
@@ -87,7 +87,7 @@
                                                 'department' => $_POST["department"],
                                                 'country' => $_POST["country"],
                                                 'city' => $_POST["city"],
-                                                'last_ip_address' => IP_ADDRESS
+                                                'last_ip_address' => 'IP_ADDRESS'
                                             ]
                                         );
 
