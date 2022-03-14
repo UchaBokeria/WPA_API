@@ -1,5 +1,5 @@
 <?php
-
+header("./testmail.php");
 /* Configs */
 require "./Services/Engineer/LearnConfigs.Scheme.php";
 require "./Services/Engineer/LearnControllers.Scheme.php";
