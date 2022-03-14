@@ -45,6 +45,7 @@
 
         public function SignUp()
         {
+            var_dump($_POST);die();
             $matches = parent::GET("SELECT id FROM users WHERE email = :email; ", [ 'email' => $_POST["email"] ]);
             
             if(COUNT($matches) >= 1) 
