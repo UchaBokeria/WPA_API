@@ -9,4 +9,4 @@ define('MAILSMTPSECURE', 'tls');
 define('MAILDEBUGOUTPUT', 'html');
 define('MAILHOST', 'smtp.titan.email');
 define('MAILCHARSET', 'UTF-8');
-define('MAILPORT', 465);
+define('MAILPORT', 587);
