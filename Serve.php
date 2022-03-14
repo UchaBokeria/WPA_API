@@ -19,11 +19,11 @@ define('MAILSMTPAUTH', true);
 define('MAILUSERNAME', 'wpatbilisicongress@gmail.com');
 define('MAILFORMNAME', 'wpatbilisicongress@gmail.com');
 define('MAILPASSWORD', 'wpatbilisi2022');
-define('MAILSMTPSECURE', 'tls');
+define('MAILSMTPSECURE', 'SSL');
 define('MAILDEBUGOUTPUT', 'html');
 define('MAILHOST', 'smtp.gmail.com');
 define('MAILCHARSET', 'UTF-8');
-define('MAILPORT', 587);
+define('MAILPORT', 465);
 
 require "./Config/Mailer.Config.php";
 require "./Config/MySQL.Config.php";
