@@ -10,9 +10,9 @@
 // require "./Services/Engineer/API.Core.php";
 
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 define('MAILSMTPDEBUG', 2);
 define('MAILSMTPAUTH', true);
@@ -33,8 +33,6 @@ require "./Services/Mailer/SmtpMailer.php";
 
 
 var_dump( (new SmtpMailer([
-    'cc_address' => 'TEST cc_address',
-    'bcc_address' => 'TEST bcc_address',
     'address' => 'ucha1bokeria@gmail.com',
     'subject' => 'TEST subject',
     'body' => 'TEST body'
