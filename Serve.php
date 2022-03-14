@@ -19,11 +19,11 @@ define('MAILSMTPAUTH', true);
 define('MAILUSERNAME', 'support@wpatbilisicongress.com');
 define('MAILFORMNAME', 'support@wpatbilisicongress.com');
 define('MAILPASSWORD', 'Wpatbilisi2022!');
-define('MAILSMTPSECURE', 'tls');
+define('MAILSMTPSECURE', 'ssl');
 define('MAILDEBUGOUTPUT', 'html');
-define('MAILHOST', 'smtp.titan.wpatbilisicongress@gmail.com');
+define('MAILHOST', 'ssl://smtp.titan.wpatbilisicongress@gmail.com');
 define('MAILCHARSET', 'UTF-8');
-define('MAILPORT', 587);
+define('MAILPORT', 465);
 
 require "./Config/Mailer.Config.php";
 require "./Config/MySQL.Config.php";
