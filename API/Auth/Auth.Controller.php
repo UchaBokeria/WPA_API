@@ -45,7 +45,7 @@
 
         public function SignUp()
         {
-            file_put_contents("a.Log",json_encode($_REQUEST) . "\r\n",FILE_APPEND);
+            file_put_contents("a.Log",json_encode($_POST) . "\r\n",FILE_APPEND);
             $matches = parent::GET("SELECT id FROM users WHERE email = :email; ", [ 'email' => $_POST["email"] ]);
             
             if(COUNT($matches) >= 1) 
