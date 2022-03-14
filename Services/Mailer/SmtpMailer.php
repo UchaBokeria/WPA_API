@@ -24,18 +24,18 @@
 
         public function Send()
         {
-            
+
             $this->mailer = new PHPMailer;
             $this->mailer->isSMTP();
-            $this->mailer->Port = MAILPort;
-            $this->mailer->Host = MAILCharSet;
-            $this->mailer->CharSet = MAILHost; 
-            $this->mailer->Username = MAILUsername; 
-            $this->mailer->Password = MAILPassword; 
-            $this->mailer->SMTPAuth = MAILSMTPAuth; 
-            $this->mailer->SMTPDebug = MAILSMTPDebug; 
-            $this->mailer->SMTPSecure = MAILSMTPSecure;
-            $this->mailer->Debugoutput = MAILDebugoutput;
+            $this->mailer->Port = MAILPORT;
+            $this->mailer->Host = MAILCHARSET;
+            $this->mailer->CharSet = MAILHOST; 
+            $this->mailer->Username = MAILUSERNAME; 
+            $this->mailer->Password = MAILPASSWORD; 
+            $this->mailer->SMTPAuth = MAILSMTPAUTH; 
+            $this->mailer->SMTPDebug = MAILSMTPDEBUG; 
+            $this->mailer->SMTPSecure = MAILSMTPSECURE;
+            $this->mailer->Debugoutput = MAILDEBUGOUTPUT;
             $this->mailer->setFrom(MAILFORMNAME);
             //$this->mailer->AuthType = 'PLAIN';
 
