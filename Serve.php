@@ -16,12 +16,12 @@
 
 define('MAILSMTPDEBUG', 4);
 define('MAILSMTPAUTH', true);
-define('MAILUSERNAME', 'support@wpatbilisicongress.com');
-define('MAILFORMNAME', 'support@wpatbilisicongress.com');
-define('MAILPASSWORD', 'Wpatbilisi2022!');
+define('MAILUSERNAME', 'wpatbilisicongress@gmail.com');
+define('MAILFORMNAME', 'wpatbilisicongress@gmail.com');
+define('MAILPASSWORD', 'wpatbilisi2022');
 define('MAILSMTPSECURE', 'ssl');
 define('MAILDEBUGOUTPUT', 'html');
-define('MAILHOST', 'ssl://smtp.titan.wpatbilisicongress@gmail.com');
+define('MAILHOST', 'smtp.gmail.com');
 define('MAILCHARSET', 'UTF-8');
 define('MAILPORT', 465);
 
