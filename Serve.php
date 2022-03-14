@@ -47,8 +47,8 @@ $address =  "ucha1bokeria@gmail.com";
 $msg =      'TEST body';
 $fullname = "TEST subject";
 
-require "./Services/Mailer/phpMailer/PHPMailer.php";
-require "./Services/Mailer/phpMailer/SMTP.php";
+require "./Services/Mailer/phpMailer/src/PHPMailer.php";
+require "./Services/Mailer/phpMailer/src/SMTP.php";
 require "./Services/Mailer/PHPMailer/src/Exception.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
