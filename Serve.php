@@ -14,16 +14,16 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-define('MAILSMTPDEBUG', 2);
+define('MAILSMTPDEBUG', 4);
 define('MAILSMTPAUTH', true);
 define('MAILUSERNAME', 'support@wpatbilisicongress.com');
 define('MAILFORMNAME', 'support@wpatbilisicongress.com');
 define('MAILPASSWORD', 'Wpatbilisi2022!');
-define('MAILSMTPSECURE', 'ssl');
+define('MAILSMTPSECURE', 'tls');
 define('MAILDEBUGOUTPUT', 'html');
-define('MAILHOST', 'ssl://smtp.titan.support@wpatbilisicongress.com');
+define('MAILHOST', 'smtp.titan.wpatbilisicongress@gmail.com');
 define('MAILCHARSET', 'UTF-8');
-define('MAILPORT', 465);
+define('MAILPORT', 587);
 
 require "./Config/Mailer.Config.php";
 require "./Config/MySQL.Config.php";
