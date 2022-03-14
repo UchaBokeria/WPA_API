@@ -32,7 +32,7 @@ function LearnConfigs($dir){
                 realpath(".".$dir.DIRECTORY_SEPARATOR.$ff)) 
             );
 
-            var_dump("./Config/$ff");die();
+            echo file_exists("./Config/$ff") ? 1:2 ;die();
         }
     }
 
