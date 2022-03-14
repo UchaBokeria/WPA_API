@@ -87,7 +87,7 @@
                                                 'department' => $_POST["department"],
                                                 'country' => $_POST["country"],
                                                 'city' => $_POST["city"],
-                                                'last_ip_address' => 'IP_ADDRESS'
+                                                'last_ip_address' => IP_ADDRESS
                                             ]
                                         );
 
