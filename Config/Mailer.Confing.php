@@ -1,12 +1,12 @@
 <?php
 
-define('MAILSMTPDebug', 2);
-define('MAILSMTPAuth', true);
-define('MAILUsername', 'support@elitelectronics.ge');
+define('MAILSMTPDEBUG', 2);
+define('MAILSMTPAUTH', true);
+define('MAILUSERNAME', 'support@elitelectronics.ge');
 define('MAILFORMNAME', 'support@elitelectronics.ge');
-define('MAILPassword', 'Wpatbilisi2022!');
-define('MAILSMTPSecure', 'tls');
-define('MAILDebugoutput', 'html');
-define('MAILHost', 'smtp.titan.email');
-define('MAILCharSet', 'UTF-8');
-define('MAILPort', 465);
+define('MAILPASSWORD', 'Wpatbilisi2022!');
+define('MAILSMTPSECURE', 'tls');
+define('MAILDEBUGOUTPUT', 'html');
+define('MAILHOST', 'smtp.titan.email');
+define('MAILCHARSET', 'UTF-8');
+define('MAILPORT', 465);
