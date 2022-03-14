@@ -56,7 +56,7 @@
                                             ]);
             }
             
-            //return $this->SendToMail();
+            return $this->SendToMail();
             
             return [ 'error' => false , 'msg' => 'Simposyums Has Been Created' ];
 
@@ -72,17 +72,17 @@
             return ['commingsoon' => true];
         }
         
-        // public function SendToMail()
-        // {
+        public function SendToMail()
+        {
 
-        //     return (new SmtpMailer([
-        //         'cc_address' => 'TEST cc_address',
-        //         'bcc_address' => 'TEST bcc_address',
-        //         'address' => 'ucha1bokeria@gmail.com',
-        //         'subject' => 'TEST subject',
-        //         'body' => 'TEST body'
-        //     ]))->Send();
+            return (new SmtpMailer([
+                'cc_address' => 'TEST cc_address',
+                'bcc_address' => 'TEST bcc_address',
+                'address' => 'ucha1bokeria@gmail.com',
+                'subject' => 'TEST subject',
+                'body' => 'TEST body'
+            ]))->Send();
 
-        // }
+        }
 
     }
