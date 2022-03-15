@@ -41,7 +41,7 @@
 
         public $Options = null;
         public $mailer = null;
-        
+
         public function __construct($OPTIONS = null) 
         {
             if($OPTIONS != null)
@@ -90,3 +90,5 @@
         }
 
     }
+
+    define('SMTPMAILER', new SmtpMailer());

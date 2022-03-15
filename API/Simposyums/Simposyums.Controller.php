@@ -12,7 +12,7 @@
         {
             
             if(GUARDIAN['error']) return GUARDIAN;
-            
+
             parent::SET("   INSERT INTO Simposyums SET  fullname = :fullname,
                                                         email = :email,
                                                         title = :title,
@@ -56,11 +56,12 @@
             }
             
             /* Send Symposyum To Mail */
-            $Response = (new SmtpMailer([
-                    'address' => 'ucha1bokeria@gmail.com',
-                    'subject' => 'TEST subject',
-                    'body' => 'TEST body' ]
-            ))->Send();
+            SMTPMAILER->Options =[
+                'address' => 'ucha1bokeria@gmail.com',
+                'subject' => 'TEST subject',
+                'body' => 'TEST body' ];
+                
+            $Response = SMTPMAILER->Send();
 
             return [ 'error' => !$Response["error"] , 'msg' => 'Simposyums Has Been Created And ' . $Response["msg"] ];
 
