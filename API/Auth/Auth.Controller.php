@@ -60,19 +60,19 @@
                                              last_ip_address = :ip,
                                              last_login_datetime = NOW() 
                             WHERE id = :id ;",
-                                             [
-                                                 'ip' => IP_ADDRESS,
-                                                 'id' => $info[0]["id"]
-                                             ]);
+                            [
+                                'ip' => IP_ADDRESS,
+                                'id' => $info[0]["id"]
+                            ]);
 
             return ["error" => false, "msg" => "You Has Been Logged Out"];
+
         }
 
         public function SignUp()
         {
-            file_put_contents("a.Log",json_encode($_POST) . "\r\n",FILE_APPEND);
-            $matches = parent::GET("SELECT id FROM users WHERE email = :email; ", [ 'email' => $_POST["email"] ]);
             
+            $matches = parent::GET("SELECT id FROM users WHERE email = :email; ", [ 'email' => $_POST["email"] ]);
             if(COUNT($matches) >= 1) 
                 return [ 'error' => true , 'msg' => 'Account With This Email Already exists' ];
 
@@ -93,8 +93,7 @@
                                                 country = :country,
                                                 city = :city,
                                                 last_ip_address = :last_ip_address,
-                                                last_login_datetime = NOW(); 
-                                                ",
+                                                last_login_datetime = NOW(); ",
                                             [
                                                 'firstname' => $_POST["firstname"],
                                                 'lastname' => $_POST["lastname"],
@@ -116,14 +115,21 @@
                                             ]
                                         );
 
-            return [ 'error' => false , 'msg' => 'Account Has Been Created' ];
-            
-            // send to wpa about signup
-            
+            global $SMTPMAILER;
+
+            $SignUpMail = $SMTPMAILER->Send([
+                'address' => $_POST["email"],
+                'subject' => "Support@wpatbilisicongress",
+                'body' => 'Your Account Has Been Created'
+            ]);
+
+            return [ 'error' => $SignUpMail , 'msg' => $SignUpMail["msg"] ];
+
         }
 
         public function Reset()
         {
+
             global $SMTPMAILER;
             $info = parent::GET("SELECT id FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
 
@@ -159,6 +165,7 @@
 
         public function ResetPassword()
         {
+            
             $info = parent::GET("SELECT id FROM users WHERE reset_key = :key", [ 'key' => $_POST["key"] ]);
             $ip = IP_ADDRESS;
 
