@@ -3,9 +3,9 @@
     date_default_timezone_set('Etc/UTC');
     header('Content-Type: text/html; charset=utf-8');
 
-    require "./PHPMailer/src/PHPMailer.php";
-    require "./PHPMailer/src/SMTP.php";
-    require "./PHPMailer/src/Exception.php";
+    require "./Services/Mailer/PHPMailer/src/PHPMailer.php";
+    require "./Services/Mailer/PHPMailer/src/SMTP.php";
+    require "./Services/Mailer/PHPMailer/src/Exception.php";
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
