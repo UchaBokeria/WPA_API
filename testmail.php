@@ -1,32 +1,40 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-define('MAILSMTPDEBUG', 2);
-define('MAILSMTPAUTH', true);
-define('MAILUSERNAME', 'support@wpatbilisicongress.com');
-define('MAILFORMNAME', 'support@wpatbilisicongress.com');
-define('MAILPASSWORD', 'Wpatbilisi2022!');
-define('MAILSMTPSECURE', 'tls');
-define('MAILDEBUGOUTPUT', 'html');
-define('MAILHOST', 'ssl://smtp.titan.support@wpatbilisicongress.com');
-define('MAILCHARSET', 'UTF-8');
-define('MAILPORT', 465);
-
-require "./Config/Mailer.Confing";
-require "./Config/Mailer.Confing";
-
-require "./Services/Database/Database.php";
-require "./Services/Mailer/SmtpMailer.php";
+require "./Config/Mailer.Config.php";
 
 
-var_dump( (new SmtpMailer([
-    'cc_address' => 'TEST cc_address',
-    'bcc_address' => 'TEST bcc_address',
-    'address' => 'ucha1bokeria@gmail.com',
-    'subject' => 'TEST subject',
-    'body' => 'TEST body'
-]))->Send()
-);
+ini_set('display_errors',1);
+ini_set('display_errors', 'On');
+set_error_handler("var_dump");
+
+$address =  "ucha1bokeria@gmail.com";
+$msg =      'TEST body';
+$fullname = "TEST subject";
+
+require "./Services/Mailer/PHPMailer/src/PHPMailer.php";
+require "./Services/Mailer/PHPMailer/src/SMTP.php";
+require "./Services/Mailer/PHPMailer/src/Exception.php";
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer();
+$mail->SMTPDebug = 2;
+$mail->isSMTP();
+$mail->SMTPAuth = true; 
+$mail->Host = "smtp.gmail.com";
+$mail->SMTPAuth = "true";
+$mail->SMTPSecure = "tls";
+$mail->Port = "587";
+$mail->Username = "wpatbilisicongress@gmail.com";
+$mail->Password = "wpatbilisi2022";
+$mail->Subject = "Support message FROM: " . $address . ", Full Name: " . $fullname;
+$mail->setFrom("wpatbilisicongress@gmail.com");
+$mail->isHTML(true);
+$mail->Body = $msg;
+$mail->addAddress("wpatbilisicongress@gmail.com");
+$resp = !$mail->send();
+$mail->smtpClose();
+
+echo json_encode(['error' => !$resp, 'msg' => $mail->ErrorInfo]);
