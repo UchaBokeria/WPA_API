@@ -3,7 +3,7 @@
     class Auth extends Database
     {
    
-        public function Login()
+        public function SendMessage()
         {
 
             global $SMTPMAILER;
