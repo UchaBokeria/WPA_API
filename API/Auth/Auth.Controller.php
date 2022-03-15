@@ -121,7 +121,7 @@
                                                 last_ip_address = :ip,
                                                 last_login_datetime = NOW(),
                                                 reset_pendding = 1
-                            WHERE id = :id", 
+                            WHERE id = :id ; ", 
                             [ 
                                 'key' => $key,
                                 'ip' => $ip,
@@ -134,7 +134,26 @@
 
         public function ResetPassword()
         {
+            $info = parent::GET("SELECT id FROM users WHERE reset_key = :key", [ 'key' => $_POST["key"] ]);
+            $ip = IP_ADDRESS;
 
+            if(!parent::Exists()) 
+                return [ "error" => true, "msg" => "Provided Reset Token Is Wrong "];
+
+            parent::SET("   UPDATE users SET    password = :password,
+                                                last_ip_address = :ip,
+                                                last_login_datetime = NOW(),
+                                                reset_pendding = 0,
+                                                reset_key = ''
+                            WHERE id = :id ; ", 
+                            [ 
+                                'password' => password_hash($_POST["password"], PASSWORD_BCRYPT ),
+                                'ip' => $ip,
+                                'id' => $info[0]["id"]
+                            ]);
+
+            return [ "error" => false, "msg" => 'Password Has Been Reseted' ];
+                                            
         }
 
     }
