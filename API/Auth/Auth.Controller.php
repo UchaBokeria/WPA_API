@@ -39,6 +39,7 @@
             unset($User[0]['password']);
             unset($User[0]['last_ip_address']);
             unset($User[0]['last_login_datetime']);
+
             return [ 'error' => false, 'msg' => $NewToken, 'userData' => $User ];
 
         }
@@ -115,6 +116,7 @@
                                             ]
                                         );
 
+            
             global $SMTPMAILER;
 
             $SignUpMail = $SMTPMAILER->Send([
@@ -138,6 +140,7 @@
 
             $ip = IP_ADDRESS;
             $key = bin2hex(openssl_random_pseudo_bytes(16) . date('y_m_d.hms') . openssl_random_pseudo_bytes(16) .  $_POST["email"] . "w3p2a");
+            
             $Object = [];
             $Object["resetLink"] = $key;
             $Object["email"] = $_POST["email"];
