@@ -99,6 +99,7 @@
 
         public function reset()
         {
+            $key = bin2hex(openssl_random_pseudo_bytes(16) . date('y_m_d.hms') . openssl_random_pseudo_bytes(16) .  $_POST["email"]);
             // generate key
             // send to mail
             // listen to request
