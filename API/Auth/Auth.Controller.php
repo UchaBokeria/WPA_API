@@ -105,6 +105,7 @@
             if(!parent::Exists()) 
                 return [ "error" => true, "msg" => "Provided Email Does Not Exist"];
 
+            $ip = IP_ADDRESS;
             $key = bin2hex(openssl_random_pseudo_bytes(16) . date('y_m_d.hms') . openssl_random_pseudo_bytes(16) .  $_POST["email"] . "w3p2a");
             $Object = [];
             $Object["resetLink"] = $key;
@@ -123,11 +124,16 @@
                             WHERE id = :id", 
                             [ 
                                 'key' => $key,
-                                'ip' => IP_ADDRESS
+                                'ip' => $ip 
                             ]);
             
             return [ "error" => !$ResetMail["error"], "msg" => $ResetMail["msg"] ];
-            // after request change reset in db
+
+        }
+
+        public function ResetPassword()
+        {
+
         }
 
     }
