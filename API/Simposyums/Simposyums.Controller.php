@@ -65,7 +65,13 @@
             global $SMTPMAILER;
             $Response = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
-                'subject' => "Support message FROM: ucha1bokeria@gmail.com, Subject: subjectTEST",
+                'subject' => "Support@wpatbilisicongress",
+                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
+            ]);
+
+            $Response = $SMTPMAILER->Send([
+                'address' => 'wpatbilisicongress@gmail.com',
+                'subject' => "Simposyum By: " .  $_POST["email"],
                 'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
             ]);
 
