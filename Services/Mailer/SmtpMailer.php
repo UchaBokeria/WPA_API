@@ -51,20 +51,8 @@
         public function Send()
         {
 
-            // $this->mailer = new PHPMailer();
-            // $this->mailer->SMTPDebug = MAILSMTPDEBUG; 
-            // $this->mailer->isSMTP();
-            // $this->mailer->SMTPAuth = MAILSMTPAUTH; 
-            // $this->mailer->Host = MAILCHARSET;
-            // $this->mailer->SMTPSecure = MAILSMTPSECURE;
-            // $this->mailer->Port = MAILPORT;
-            // $this->mailer->Username = MAILUSERNAME; 
-            // $this->mailer->Password = MAILPASSWORD; 
-            // $this->mailer->isHTML(MAILISHTML);
-            // $this->mailer->setFrom(MAILFORMNAME);
-            // //$this->mailer->AuthType = 'PLAIN';
-
             $mail = new PHPMailer();
+            
             $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->SMTPAuth = MAILSMTPAUTH; 
@@ -81,29 +69,6 @@
             $mail->addAddress($this->Options['address']);
             $resp = $mail->send();
             $mail->smtpClose();
-
-            // if ($this->Options['cc_address'] != '')
-            //     foreach (explode(';', $this->Options['cc_address']) as $val) $this->mailer->AddCC($val);
-            
-            // if ($this->Options['bcc_address'] != '')
-            //     foreach (explode(';', $this->Options['bcc_address']) as $val) $this->mailer->AddBCC($val);
-
-            // if ($this->Options['address'] != '')
-            //     foreach (explode(";", $this->Options['address']) as $val) $this->mailer->addAddress($val);
-            
-            // $this->mailer->Subject = $this->Options['subject'];
-            // //$this->mailer->addAttachment('http://localhost/TDG/mepacallapp/media/uploads/documents/'.$attachmet);
-            // $this->mailer->Body = ($this->Options['body'] == '') ? ' ' : $this->Options['body'];
-
-            // $this->Result = $this->mailer->send();
-            // $this->mailer->smtpClose();
-            
-            // return [
-            //     'error' => !$this->Result , 
-            //     'msg' => (!$this->Result ) ? 
-            //         'Mail Has Been Failed' : 
-            //         'Mail Has Been Sent'
-            // ];
 
             return [
                 'error' => !$resp , 
