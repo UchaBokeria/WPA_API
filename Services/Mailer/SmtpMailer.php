@@ -65,7 +65,7 @@
             // //$this->mailer->AuthType = 'PLAIN';
 
             $mail = new PHPMailer();
-            $mail->SMTPDebug = 2;
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->SMTPAuth = true; 
             $mail->Host = "smtp.gmail.com";
@@ -107,7 +107,7 @@
 
             return [
                 'error' => !$resp , 
-                'msg' => ($resp ) ? 
+                'msg' => (!$resp) ? 
                     'Mail Has Been Failed' : 
                     'Mail Has Been Sent'
             ];

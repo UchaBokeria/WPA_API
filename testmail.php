@@ -34,7 +34,10 @@ $mail->setFrom("wpatbilisicongress@gmail.com");
 $mail->isHTML(true);
 $mail->Body = $msg;
 $mail->addAddress("wpatbilisicongress@gmail.com");
-$resp = !$mail->send();
+if(!$mail->send()){
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
+else{
+    echo "good";
+}
 $mail->smtpClose();
-
-echo json_encode(['error' => !$resp, 'msg' => $mail->ErrorInfo]);
