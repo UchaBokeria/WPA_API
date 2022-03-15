@@ -1,6 +1,6 @@
 <?php
 
-define('MAILSMTPDEBUG', 3);
+define('MAILSMTPDEBUG', 0);
 define('MAILISHTML', true);
 define('MAILSMTPAUTH', "true");
 define('MAILUSERNAME', 'wpatbilisicongress@gmail.com');
