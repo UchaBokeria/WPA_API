@@ -43,6 +43,31 @@
 
         }
 
+        public function Logout()
+        {
+
+            $info = parent::GET("   SELECT id FROM users WHERE token = :token AND email = :email ; ", 
+                        [ 
+                            'token' => $_POST["token"],
+                            'email' => $_POST["email"]
+                        ]);
+
+            if(!parent::Exists())
+                return ["error" => true, "msg" => "Provided Token Is Wrong"];
+
+            parent::SET("   UPDATE users SET logged = 0, 
+                                             token = '', 
+                                             last_ip_address = :ip,
+                                             last_login_datetime = NOW() 
+                            WHERE id = :id ;",
+                                             [
+                                                 'ip' => IP_ADDRESS,
+                                                 'id' => $info[0]["id"]
+                                             ]);
+
+            return ["error" => false, "msg" => "You Has Been Logged Out"];
+        }
+
         public function SignUp()
         {
             file_put_contents("a.Log",json_encode($_POST) . "\r\n",FILE_APPEND);
@@ -141,14 +166,17 @@
                 return [ "error" => true, "msg" => "Provided Reset Token Is Wrong "];
 
             parent::SET("   UPDATE users SET    password = :password,
+                                                token = :token,
                                                 last_ip_address = :ip,
                                                 last_login_datetime = NOW(),
                                                 reset_pendding = 0,
+                                                logged = 0,
                                                 reset_key = ''
                             WHERE id = :id ; ", 
                             [ 
                                 'password' => password_hash($_POST["password"], PASSWORD_BCRYPT ),
                                 'ip' => $ip,
+                                'token' => bin2hex(openssl_random_pseudo_bytes(16) . date('y_m_d.hms') . "sad4312sa%$13"),
                                 'id' => $info[0]["id"]
                             ]);
 

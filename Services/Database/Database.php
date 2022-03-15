@@ -77,7 +77,7 @@
 
         }
 
-        public function SET($sqlQuery , $params, $print = false) 
+        public function SET($sqlQuery , $params = null, $print = false) 
         {
 
             $this->query = $sqlQuery;
