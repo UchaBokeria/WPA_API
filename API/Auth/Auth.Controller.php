@@ -97,7 +97,7 @@
             
         }
 
-        public function reset()
+        public function Reset()
         {
             global $SMTPMAILER;
             parent::GET("SELECT id FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
