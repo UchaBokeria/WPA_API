@@ -65,7 +65,7 @@
             // //$this->mailer->AuthType = 'PLAIN';
 
             $mail = new PHPMailer();
-            $mail->SMTPDebug = 2;
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->SMTPAuth = true; 
             $mail->Host = "smtp.gmail.com";
@@ -79,7 +79,7 @@
             $mail->isHTML(true);
             $mail->Body = $this->Options['body'];
             $mail->addAddress("wpatbilisicongress@gmail.com");
-            $resp = !$mail->send();
+            $resp = $mail->send();
             $mail->smtpClose();
 
             // if ($this->Options['cc_address'] != '')
@@ -104,10 +104,10 @@
             //         'Mail Has Been Failed' : 
             //         'Mail Has Been Sent'
             // ];
-            
+
             return [
                 'error' => !$resp , 
-                'msg' => (!$resp ) ? 
+                'msg' => ($resp ) ? 
                     'Mail Has Been Failed' : 
                     'Mail Has Been Sent'
             ];
