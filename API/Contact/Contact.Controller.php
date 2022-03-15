@@ -32,7 +32,7 @@
                                                     lastname = :lastname,
                                                     subject = :subject,
                                                     body = :body,
-                                                    ip = :ip ; ",
+                                                    ip_address = :ip_address ; ",
                             [
                                 "sender" => $_POST["email"],
                                 "firstname" => $_POST["firstname"],
