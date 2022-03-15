@@ -72,13 +72,13 @@
             $mail->SMTPAuth = MAILSMTPAUTH;
             $mail->SMTPSecure = MAILSMTPSECURE;
             $mail->Port = MAILPORT;
-            $mail->Username = "wpatbilisicongress@gmail.com";
-            $mail->Password = "wpatbilisi2022";
+            $mail->Username = MAILUSERNAME;
+            $mail->Password = MAILPASSWORD;
             $mail->Subject = $this->Options['subject'];
-            $mail->setFrom("wpatbilisicongress@gmail.com");
-            $mail->isHTML(true);
+            $mail->setFrom(MAILFORMNAME);
+            $mail->isHTML(MAILISHTML);
             $mail->Body = $this->Options['body'];
-            $mail->addAddress("wpatbilisicongress@gmail.com");
+            $mail->addAddress($this->Options['address']);
             $resp = $mail->send();
             $mail->smtpClose();
 
