@@ -93,8 +93,8 @@
                 'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Mail.Template.html")
             ]);
 
-            return [ 
-                'error' => !($CustomerResponse["error"] && $AdminResponse["error"]) , 
+            return [
+                'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
                 'msg' => "  Simposyums Has Been Created. " . 
                             $CustomerResponse["msg"] . " To The Customer, " . 
                             $AdminResponse["msg"] . " To The Administrator "

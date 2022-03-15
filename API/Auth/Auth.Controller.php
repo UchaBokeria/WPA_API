@@ -128,7 +128,7 @@
                                 'id' => $info[0]["id"]
                             ]);
             
-            return [ "error" => !$ResetMail["error"], "msg" => $ResetMail["msg"] ];
+            return [ "error" => $ResetMail["error"], "msg" => $ResetMail["msg"] ];
 
         }
 
