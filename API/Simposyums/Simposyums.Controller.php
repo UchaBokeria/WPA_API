@@ -41,7 +41,7 @@
 
             $index = 1;
             foreach ($_POST['presentator'] as $key => $value) {
-                $_POST["presentator_$key$index"] = $value;
+                $_POST["presentator_$key\_$index"] = $value;
 
                 parent::SET("   INSERT INTO Simposyum_presentators SET  simposyum_id = :simposyum_id,
                                                                         title = :title,
