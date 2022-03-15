@@ -60,7 +60,7 @@
             $Response = $SMTPMAILER->Send([
                 'address' => 'ucha1bokeria@gmail.com',
                 'subject' => "Support message FROM: ucha1bokeria@gmail.com, Subject: subjectTEST",
-                'body' => 'TEST body' 
+                'body' => TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
             ]);
 
             return [ 'error' => !$Response["error"] , 'msg' => 'Simposyums Has Been Created And ' . $Response["msg"] ];
