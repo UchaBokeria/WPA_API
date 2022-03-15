@@ -67,14 +67,14 @@
             $mail = new PHPMailer();
             $mail->SMTPDebug = 0;
             $mail->isSMTP();
-            $mail->SMTPAuth = true; 
+            $mail->SMTPAuth = MAILSMTPAUTH; 
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = "true";
             $mail->SMTPSecure = "tls";
             $mail->Port = "587";
             $mail->Username = "wpatbilisicongress@gmail.com";
             $mail->Password = "wpatbilisi2022";
-            $mail->Subject = "Support message FROM: " . $this->Options['address'] . ", Full Name: " . $this->Options['subject'];
+            $mail->Subject = $this->Options['subject'];
             $mail->setFrom("wpatbilisicongress@gmail.com");
             $mail->isHTML(true);
             $mail->Body = $this->Options['body'];

@@ -54,12 +54,12 @@
                                                                         'country' => $value["country"]
                                                                     ]);
             }
-            
+
             global $SMTPMAILER;
             /* Send Symposyum To Mail */
             $SMTPMAILER->Options = [
                 'address' => 'ucha1bokeria@gmail.com',
-                'subject' => 'TEST subject',
+                'subject' => "Support message FROM: ucha1bokeria@gmail.com, Subject: subjectTEST",
                 'body' => 'TEST body' 
             ];
 
