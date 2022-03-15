@@ -3,13 +3,38 @@
     date_default_timezone_set('Etc/UTC');
     header('Content-Type: text/html; charset=utf-8');
 
-    require './Services/Mailer/Exception.php';
-    require './Services/Mailer/PHPMailer.php';
-    require './Services/Mailer/SMTP.php';
+    require "./Services/Mailer/PHPMailer/src/PHPMailer.php";
+    require "./Services/Mailer/PHPMailer/src/SMTP.php";
+    require "./Services/Mailer/PHPMailer/src/Exception.php";
 
     use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
+    /*
+        $mail = new PHPMailer();
+        $mail->SMTPDebug = 2;
+        $mail->isSMTP();
+        $mail->SMTPAuth = true; 
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = "true";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = "587";
+        $mail->Username = "wpatbilisicongress@gmail.com";
+        $mail->Password = "wpatbilisi2022";
+        $mail->Subject = "Support message FROM: " . $address . ", Full Name: " . $fullname;
+        $mail->setFrom("wpatbilisicongress@gmail.com");
+        $mail->isHTML(true);
+        $mail->Body = $msg;
+        $mail->addAddress("wpatbilisicongress@gmail.com");
+        if(!$mail->send()){
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        }
+        else{
+            echo "good";
+        }
+        $mail->smtpClose();
+    */
 
     class SmtpMailer extends Database
     {
@@ -25,17 +50,16 @@
         public function Send()
         {
 
-            $this->mailer = new PHPMailer;
+            $this->mailer = new PHPMailer();
+            $this->mailer->SMTPDebug = MAILSMTPDEBUG; 
             $this->mailer->isSMTP();
-            $this->mailer->Port = MAILPORT;
+            $this->mailer->SMTPAuth = MAILSMTPAUTH; 
             $this->mailer->Host = MAILCHARSET;
-            $this->mailer->CharSet = MAILHOST; 
+            $this->mailer->SMTPSecure = MAILSMTPSECURE;
+            $this->mailer->Port = MAILPORT;
             $this->mailer->Username = MAILUSERNAME; 
             $this->mailer->Password = MAILPASSWORD; 
-            $this->mailer->SMTPAuth = MAILSMTPAUTH; 
-            $this->mailer->SMTPDebug = MAILSMTPDEBUG; 
-            $this->mailer->SMTPSecure = MAILSMTPSECURE;
-            $this->mailer->Debugoutput = MAILDEBUGOUTPUT;
+            $this->mailer->isHTML(MAILISHTML);
             $this->mailer->setFrom(MAILFORMNAME);
             //$this->mailer->AuthType = 'PLAIN';
 
@@ -50,11 +74,13 @@
             
             $this->mailer->Subject = $this->Options['subject'];
             //$this->mailer->addAttachment('http://localhost/TDG/mepacallapp/media/uploads/documents/'.$attachmet);
-            $this->mailer->msgHTML(($this->Options['body'] == '') ? ' ' : $this->Options['body']);
+            $this->mailer->Body = ($this->Options['body'] == '') ? ' ' : $this->Options['body'];
 
             $this->Result = $this->mailer->send();
-            return [ 
-                'error' => $this->Result , 
+            $this->mailer->smtpClose();
+            
+            return [
+                'error' => !$this->Result , 
                 'msg' => (!$this->Result ) ? 
                     'Mail Has Been Failed' : 
                     'Mail Has Been Sent'

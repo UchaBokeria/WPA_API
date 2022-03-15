@@ -12,7 +12,7 @@
         {
             
             if(GUARDIAN['error']) return GUARDIAN;
-
+            
             parent::SET("   INSERT INTO Simposyums SET  fullname = :fullname,
                                                         email = :email,
                                                         title = :title,
@@ -40,25 +40,29 @@
             $simposyum_id = parent::GetLastId();
 
             foreach ($_POST['presentator'] as $key => $value) {
-
                 parent::SET("   INSERT INTO Simposyum_presentators SET  simposyum_id = :simposyum_id,
                                                                         title = :title,
                                                                         name = :name,
                                                                         email = :email,
                                                                         country = :country,
                                                                         create_datetime = NOW() ; ", 
-                                            [
-                                                'simposyum_id' => $simposyum_id,
-                                                'title' => $value["title"],
-                                                'name' => $value["name"],
-                                                'email' => $value["email"],
-                                                'country' => $value["country"]
-                                            ]);
+                                                                    [
+                                                                        'simposyum_id' => $simposyum_id,
+                                                                        'title' => $value["title"],
+                                                                        'name' => $value["name"],
+                                                                        'email' => $value["email"],
+                                                                        'country' => $value["country"]
+                                                                    ]);
             }
             
-            return $this->SendToMail();
-            
-            return [ 'error' => false , 'msg' => 'Simposyums Has Been Created' ];
+            /* Send Symposyum To Mail */
+            $Response = (new SmtpMailer([
+                    'address' => 'ucha1bokeria@gmail.com',
+                    'subject' => 'TEST subject',
+                    'body' => 'TEST body' ]
+            ))->Send();
+
+            return [ 'error' => !$Response["error"] , 'msg' => 'Simposyums Has Been Created And ' . $Response["msg"] ];
 
         }
 
@@ -72,17 +76,4 @@
             return ['commingsoon' => true];
         }
         
-        public function SendToMail()
-        {
-
-            return (new SmtpMailer([
-                'cc_address' => 'TEST cc_address',
-                'bcc_address' => 'TEST bcc_address',
-                'address' => 'ucha1bokeria@gmail.com',
-                'subject' => 'TEST subject',
-                'body' => 'TEST body'
-            ]))->Send();
-
-        }
-
     }
