@@ -48,8 +48,10 @@
                 $this->Options = $OPTIONS;
         }
 
-        public function Send()
+        public function Send($OPTIONS = null)
         {
+            if($OPTIONS != null)
+                $this->Options = $OPTIONS;
 
             $mail = new PHPMailer();
             
