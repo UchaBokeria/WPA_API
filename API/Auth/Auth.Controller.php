@@ -100,7 +100,7 @@
         public function Reset()
         {
             global $SMTPMAILER;
-            parent::GET("SELECT id FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
+            $info = parent::GET("SELECT id FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
 
             if(!parent::Exists()) 
                 return [ "error" => true, "msg" => "Provided Email Does Not Exist"];
@@ -124,7 +124,8 @@
                             WHERE id = :id", 
                             [ 
                                 'key' => $key,
-                                'ip' => $ip 
+                                'ip' => $ip,
+                                'id' => $info[0]["id"]
                             ]);
             
             return [ "error" => !$ResetMail["error"], "msg" => $ResetMail["msg"] ];
