@@ -56,7 +56,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 $mail = new PHPMailer();
-$mail->SMTPDebug = 4;
+$mail->SMTPDebug = 2;
 $mail->isSMTP();
 $mail->SMTPAuth = true; 
 $mail->Host = "smtp.gmail.com";
