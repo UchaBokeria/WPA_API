@@ -90,6 +90,6 @@
         }
 
     }
-
+    
     global $SMTPMAILER;
     $SMTPMAILER = new SmtpMailer();
