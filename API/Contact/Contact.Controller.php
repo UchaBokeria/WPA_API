@@ -39,7 +39,7 @@
                                 "lastname" => $_POST["lastname"],
                                 "subject" => $_POST["subject"],
                                 "body" => $_POST["body"],
-                                "ip" => $ip,
+                                "ip_address" => $ip,
                             ]);
 
             return [ 'error' => $Contact["error"], 'msg' => $Contact["msg"] ];
