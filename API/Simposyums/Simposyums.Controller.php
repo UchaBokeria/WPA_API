@@ -61,21 +61,8 @@
                                                                     ]);
             }
 
-            /* Send Symposyum To Mail */
-            global $SMTPMAILER;
-            $Response = $SMTPMAILER->Send([
-                'address' => $_POST["email"],
-                'subject' => "Support@wpatbilisicongress",
-                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
-            ]);
-
-            $Response = $SMTPMAILER->Send([
-                'address' => 'wpatbilisicongress@gmail.com',
-                'subject' => "Simposyum By: " .  $_POST["email"],
-                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
-            ]);
-
-            return [ 'error' => !$Response["error"] , 'msg' => 'Simposyums Has Been Created And ' . $Response["msg"] ];
+            /* Send Symposyum To The Mail */
+            return $Response = $this->SendMail();
 
         }
 
@@ -89,4 +76,28 @@
             return ['commingsoon' => true];
         }
         
+        private function SendMail()
+        {
+
+            global $SMTPMAILER;
+            $CustomerResponse = $SMTPMAILER->Send([
+                'address' => $_POST["email"],
+                'subject' => "Support@wpatbilisicongress",
+                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
+            ]);
+
+            $AdminResponse = $SMTPMAILER->Send([
+                'address' => 'wpatbilisicongress@gmail.com',
+                'subject' => "Simposyum By: " .  $_POST["email"],
+                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
+            ]);
+
+            return [ 
+                'error' => !($CustomerResponse["error"] && $AdminResponse["error"]) , 
+                'msg' => "  Simposyums Has Been Created. " . 
+                            $CustomerResponse["msg"] . " To The Customer, " . 
+                            $AdminResponse["msg"] . " To The Administrator "
+            ];
+
+        }
     }

@@ -75,7 +75,7 @@
             return [
                 'error' => !$resp , 
                 'msg' => (!$resp) ? 
-                    'Mail Has Been Failed' : 
+                    'Mail Has Been Failed To Sent' : 
                     'Mail Has Been Sent'
             ];
             
