@@ -68,7 +68,7 @@ $mail->Subject = "Support message FROM: " . $address . ", Full Name: " . $fullna
 $mail->setFrom("wpatbilisicongress@gmail.com");
 $mail->isHTML(true);
 $mail->Body = $msg;
-$mail->addAddress("wpatbilisicongress@gmail.com");
+$mail->addAddress("ucha1bokeria@gmail.com");
 if(!$mail->send()){
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
