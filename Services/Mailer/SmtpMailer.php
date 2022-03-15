@@ -91,4 +91,5 @@
 
     }
 
-    define('SMTPMAILER', new SmtpMailer());
+    global $SMTPMAILER;
+    $SMTPMAILER = new SmtpMailer();
