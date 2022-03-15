@@ -61,8 +61,6 @@
                                                                     ]);
             }
 
-            var_dump($_POST);die();
-
             /* Send Symposyum To Mail */
             global $SMTPMAILER;
             $Response = $SMTPMAILER->Send([
