@@ -62,7 +62,7 @@
                 'body' => 'TEST body' 
             ];
 
-            $Response = SMTPMAILER->Send();
+            $Response = (SMTPMAILER)->Send();
 
             return [ 'error' => !$Response["error"] , 'msg' => 'Simposyums Has Been Created And ' . $Response["msg"] ];
 
