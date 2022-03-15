@@ -64,7 +64,7 @@
             /* Send Symposyum To Mail */
             global $SMTPMAILER;
             $Response = $SMTPMAILER->Send([
-                'address' => 'ucha1bokeria@gmail.com',
+                'address' => $_POST["email"],
                 'subject' => "Support message FROM: ucha1bokeria@gmail.com, Subject: subjectTEST",
                 'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
             ]);
