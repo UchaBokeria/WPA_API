@@ -68,10 +68,10 @@
             $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->SMTPAuth = MAILSMTPAUTH; 
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = "true";
-            $mail->SMTPSecure = "tls";
-            $mail->Port = "587";
+            $mail->Host = MAILHOST;
+            $mail->SMTPAuth = MAILSMTPAUTH;
+            $mail->SMTPSecure = MAILSMTPSECURE;
+            $mail->Port = MAILPORT;
             $mail->Username = "wpatbilisicongress@gmail.com";
             $mail->Password = "wpatbilisi2022";
             $mail->Subject = $this->Options['subject'];
