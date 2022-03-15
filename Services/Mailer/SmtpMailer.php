@@ -65,7 +65,7 @@
             // //$this->mailer->AuthType = 'PLAIN';
 
             $mail = new PHPMailer();
-            $mail->SMTPDebug = 0;
+            $mail->SMTPDebug = 2;
             $mail->isSMTP();
             $mail->SMTPAuth = true; 
             $mail->Host = "smtp.gmail.com";
