@@ -1,6 +1,6 @@
 <?php
 
-    class Auth extends Database
+    class Contact extends Database
     {
    
         public function SendMessage()
