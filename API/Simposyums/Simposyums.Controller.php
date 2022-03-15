@@ -80,16 +80,17 @@
         {
 
             global $SMTPMAILER;
+            
             $CustomerResponse = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
                 'subject' => "Support@wpatbilisicongress",
-                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Mail.Template.html")
             ]);
 
             $AdminResponse = $SMTPMAILER->Send([
                 'address' => 'wpatbilisicongress@gmail.com',
                 'subject' => "Simposyum By: " .  $_POST["email"],
-                'body' => $SMTPMAILER->TemplateBuild($_POST, file_get_contents("./Sources/Doc/TemplateMail.html"))
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Mail.Template.html")
             ]);
 
             return [ 

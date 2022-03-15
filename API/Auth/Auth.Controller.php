@@ -99,12 +99,35 @@
 
         public function reset()
         {
-            $key = bin2hex(openssl_random_pseudo_bytes(16) . date('y_m_d.hms') . openssl_random_pseudo_bytes(16) .  $_POST["email"]);
-            // generate key
-            // send to mail
-            // listen to request
+            global $SMTPMAILER;
+            parent::GET("SELECT id FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
+
+            if(!parent::Exists()) 
+                return [ "error" => true, "msg" => "Provided Email Does Not Exist"];
+
+            $key = bin2hex(openssl_random_pseudo_bytes(16) . date('y_m_d.hms') . openssl_random_pseudo_bytes(16) .  $_POST["email"] . "w3p2a");
+            $Object = [];
+            $Object["resetLink"] = $key;
+            $Object["email"] = $_POST["email"];
+            
+            $ResetMail = $SMTPMAILER->Send([
+                'address' => $_POST["email"],
+                'subject' => "Support@wpatbilisicongress",
+                'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/Reset.Template.html")
+            ]);
+            
+            parent::SET("   UPDATE users SET    reset_key = :key,
+                                                last_ip_address = :ip,
+                                                last_login_datetime = NOW(),
+                                                reset_pendding = 1
+                            WHERE id = :id", 
+                            [ 
+                                'key' => $key,
+                                'ip' => IP_ADDRESS
+                            ]);
+            
+            return [ "error" => !$ResetMail["error"], "msg" => $ResetMail["msg"] ];
             // after request change reset in db
         }
-
 
     }

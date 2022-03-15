@@ -83,6 +83,7 @@
 
         public function TemplateBuild($object, $template)
         {
+            $template = file_get_contents($template);
             foreach ($object as $key => $value)
                 $template = str_replace("{". $key . "}", $value, $template);
             
