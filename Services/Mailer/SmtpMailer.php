@@ -83,9 +83,9 @@
 
         public function TemplateBuild($object, $template)
         {
-            foreach ($object as $key => $value) 
+            foreach ($object as $key => $value)
                 $template = str_replace("{$key}", $value, $template);
-
+            
             return $template;
         }
 
