@@ -56,11 +56,12 @@
             }
             
             /* Send Symposyum To Mail */
-            SMTPMAILER->Options =[
+            (SMTPMAILER)->Options = [
                 'address' => 'ucha1bokeria@gmail.com',
                 'subject' => 'TEST subject',
-                'body' => 'TEST body' ];
-                
+                'body' => 'TEST body' 
+            ];
+
             $Response = SMTPMAILER->Send();
 
             return [ 'error' => !$Response["error"] , 'msg' => 'Simposyums Has Been Created And ' . $Response["msg"] ];
