@@ -77,8 +77,7 @@
             // );
 
             $mail->isHTML(true);
-            $mail->Body = '<iframe src="https://wpatbilisicongress.com/" title="W3Schools Free Online Web Tutorials">
-                </iframe>';
+            $mail->Body = '<img src="https://th.bing.com/th/id/OIP.XVFooFAPijjQp2-9vm5ttQHaHa?pid=ImgDet&w=614&h=614&rs=1"> X';
             //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
             $resp = $mail->send();
