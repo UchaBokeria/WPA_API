@@ -137,7 +137,7 @@
         {
 
             global $SMTPMAILER;
-            $info = parent::GET("SELECT id FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
+            $info = parent::GET("SELECT id, CONCAT(firstname,' ',lastname) AS fullname, salutation FROM users WHERE email = :email", [ 'email' => $_POST["email"] ]);
 
             if(!parent::Exists()) 
                 return [ "error" => true, "msg" => "Provided Email Does Not Exist"];
@@ -147,8 +147,8 @@
             
             $Object = [];
             $Object["resetLink"] = $key;
-            $Object["fullname"] = $_POST["fullname"];
-            $Object["salutation"] = $_POST["salutation"];
+            $Object["fullname"] = $info[0]["fullname"];
+            $Object["salutation"] = $info[0]["salutation"];
             
             $ResetMail = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
