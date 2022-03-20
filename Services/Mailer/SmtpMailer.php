@@ -76,8 +76,9 @@
                 'allow_self_signed' => true
                 )
             );
-            
-            $mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
+
+            $mail->AddEmbeddedImage('./Sources/Doc/logosvg.svg', 'logo_2u');
+            //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
             $resp = $mail->send();
             $mail->smtpClose();
