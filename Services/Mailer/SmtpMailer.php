@@ -66,8 +66,6 @@
             $mail->Password = MAILPASSWORD;
             $mail->Subject = $this->Options['subject'];
             $mail->setFrom(MAILFORMNAME);
-            $mail->isHTML(MAILISHTML);
-            $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
             $mail->SMTPOptions = array(
                 'ssl' => array(
@@ -77,7 +75,9 @@
                 )
             );
 
-            $mail->AddEmbeddedImage('./Sources/Doc/logosvg.svg', 'logo_2u');
+            $mail->AddEmbeddedImage('./Sources/Doc/logosvg.svg', 'my-attach', 'logosvg.svg ');
+            $mail->isHTML(true);
+            $mail->Body = '<img alt="PHPMailer" src="cid:my-attach">';
             //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
             $resp = $mail->send();
