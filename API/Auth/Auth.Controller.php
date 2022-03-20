@@ -119,10 +119,14 @@
             
             global $SMTPMAILER;
 
+            $Object = [];
+            $Object["fullname"] = $_POST["fullname"];
+            $Object["salutation"] = $_POST["salutation"];
+
             $SignUpMail = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
-                'subject' => "Support@wpatbilisicongress",
-                'body' => 'Your Account Has Been Created'
+                'subject' => "Proposal Submission Confirmation / WPA Tbilisi 2022",
+                'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/SignUp.Template.html")
             ]);
 
             return [ 'error' => $SignUpMail , 'msg' => $SignUpMail["msg"] ];
@@ -143,11 +147,12 @@
             
             $Object = [];
             $Object["resetLink"] = $key;
-            $Object["email"] = $_POST["email"];
+            $Object["fullname"] = $_POST["fullname"];
+            $Object["salutation"] = $_POST["salutation"];
             
             $ResetMail = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
-                'subject' => "Support@wpatbilisicongress",
+                'subject' => "Proposal Submission Confirmation / WPA Tbilisi 2022",
                 'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/Reset.Template.html")
             ]);
             

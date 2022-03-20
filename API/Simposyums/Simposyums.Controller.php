@@ -83,19 +83,19 @@
             
             $CustomerResponse = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
-                'subject' => "Support@wpatbilisicongress",
-                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Mail.Template.html")
+                'subject' => "Proposal Submission Confirmation / WPA Tbilisi 2022",
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Simposyums.Template.html")
             ]);
 
             $AdminResponse = $SMTPMAILER->Send([
                 'address' => 'wpatbilisicongress@gmail.com',
-                'subject' => "Simposyum By: " .  $_POST["email"],
-                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Mail.Template.html")
+                'subject' => "Symposium  By: " .  $_POST["email"],
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Simposyums.Template.html")
             ]);
 
             return [
                 'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
-                'msg' => "  Simposyums Has Been Created. " . 
+                'msg' => "  Symposium  Has Been Created. " . 
                             $CustomerResponse["msg"] . " To The Customer, " . 
                             $AdminResponse["msg"] . " To The Administrator "
             ];

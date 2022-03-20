@@ -21,7 +21,7 @@
       line-height: 1.6;
     }
     .container {
-      max-width: 600px;
+      max-width: 1200px;
       min-height: 500px;
       margin: 0 auto;
     }
@@ -91,6 +91,75 @@
       color: #15c;
       font-weight: 400;
     }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      background-color: #eaeef5;
+      padding: 10px;
+    }
+    h2 span {
+      font-weight: 600;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+    }
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid #fff;
+    }
+    th,
+    td {
+      padding: 10px;
+    }
+
+    .proposer {
+      background-color: #e4e0e0;
+      color: #000;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .proposer .title {
+      background-color: #cdcdcd;
+    }
+
+    .chairs th {
+      background-color: #7190c1;
+      color: #fff;
+      text-align: left;
+      font-weight: 500;
+    }
+    .chairs td {
+      background-color: #eaeef5;
+      color: #000;
+      text-align: left;
+      font-weight: 500;
+    }
+    .chairs,
+    .presenters {
+      margin-top: 50px;
+    }
+    .presenters {
+      margin-bottom: 50px;
+    }
+    .presenters th {
+      background-color: #bd1b21;
+      color: #fff;
+      text-align: left;
+      font-weight: 500;
+    }
+    .presenters td {
+      background-color: #ffd2d3;
+      color: #000;
+      text-align: left;
+      font-weight: 500;
+    }
   </style>
   <body>
     <div class="container">
@@ -103,29 +172,97 @@
         </a>
       </div>
       <div class="mail-wrapper">
-        <h1>Hello {salutation} {fullname},</h1>
-        <p class="important">
-          A request has been received to change the password for your
-          <a class="link" href="https://wpatbilisicongress.com/" target="_blank"
-            >WPA Tbilsi Congress</a
-          >
-          account.
-        </p>
-        <a
-          class="reset-btn"
-          href="https://wpatbilisicongress.com/new-password/{resetLink}"
-          >Reset Password</a
-        >
+        <h1>Dear {salutation} {fullname}!</h1>
         <p>
-          If you did not initiate this request, please contact us immediately at
+          Thank you for filling out Symposium Proposal form.<br />If your inquiry is
+          urgent, please contact us immediately at
           <a
             class="mail"
             href="mailto:wpatbilisicongress@gmail.com"
             target="_blank"
             >wpatbilisicongress@gmail.com
           </a>
+          and we will reply by email as soon as possible.
+        </p>
+        <table class="proposer">
+          <tr>
+            <td class="title">Proposer Name</td>
+            <td> {fullname} </td>
+          </tr>
+          <tr>
+            <td class="title">Proposer Email</td>
+            <td> {email} </td>
+          </tr>
+          <tr>
+            <td class="title">Symposium Title</td>
+            <td> {title} </td>
+          </tr>
+        </table>
+        <br />
+        <!-- <h2><span>Symposium Title:</span> Symposium Title</h2> -->
+        <h2><span>An overall abstract describing the symposium:</span></h2>
+        <p>
+          {description}
         </p>
         <br />
+        <table class="chairs">
+          <tr>
+            <th>Chair & Co-chair</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Email</th>
+          </tr>
+          <tr>
+            <td>Chair</td>
+            <td> {chair_name} </td>
+            <td> {chair_country} </td>
+            <td> {chair_email} </td>
+          </tr>
+          <tr>
+            <td>Co-chair</td>
+            <td> {cochair_name} </td>
+            <td> {cochair_country} </td>
+            <td> {cochair_email} </td>
+          </tr>
+        </table>
+        <br />
+        <table class="presenters">
+          <tr>
+            <th>Presenters</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Email</th>
+            <th>Title of Presentation</th>
+          </tr>
+          <tr>
+            <td>Presenter 1</td>
+            <td>{presentator_title_1}</td>
+            <td>{presentator_name_1}</td>
+            <td>{presentator_email_1}</td>
+            <td>{presentator_country_1}</td>
+          </tr>
+          <tr>
+            <td>Presenter 2</td>
+            <td>{presentator_title_2}</td>
+            <td>{presentator_name_2}</td>
+            <td>{presentator_email_2}</td>
+            <td>{presentator_country_2}</td>
+          </tr>
+          <tr>
+            <td>Presenter 3</td>
+            <td>{presentator_title_3}</td>
+            <td>{presentator_name_3}</td>
+            <td>{presentator_email_3}</td>
+            <td>{presentator_country_3}</td>
+          </tr>
+          <tr>
+            <td>Presenter 4</td>
+            <td>{presentator_title_4}</td>
+            <td>{presentator_name_4}</td>
+            <td>{presentator_email_4}</td>
+            <td>{presentator_country_4}</td>
+          </tr>
+        </table>
         <p>
           Thank you, <br />
           The WPA Tbilisi Congress Team
