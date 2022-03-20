@@ -67,6 +67,7 @@
             $mail->Subject = $this->Options['subject'];
             $mail->setFrom(MAILFORMNAME);
             $mail->addAddress($this->Options['address']);
+            
             // $mail->SMTPOptions = array(
             //     'ssl' => array(
             //     'verify_peer' => false,
@@ -77,7 +78,7 @@
 
             $mail->AddEmbeddedImage('logosvg.svg', 'logo_2u', "logosvg.svg");
             $mail->isHTML(true);
-            $mail->Body = '<img alt="PHPMailer" src=\"cid:logo_2u\">';
+            $mail->Body = '<img alt="PHPMailer" src="cid:logo_2u">';
             //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
             $resp = $mail->send();
