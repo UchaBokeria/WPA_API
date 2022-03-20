@@ -69,6 +69,16 @@
             $mail->isHTML(MAILISHTML);
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                )
+            ); 
+            
+            $mail->addAttachment("https://wpatbilisicongress.com/static/media/", "wpa-logo.928ce6b4.svg"); 
+
             $resp = $mail->send();
             $mail->smtpClose();
 
