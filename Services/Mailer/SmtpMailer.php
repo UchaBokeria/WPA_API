@@ -79,8 +79,9 @@
             $mail->isHTML(true);
             $mail->Body = '<iframe src="https://wpatbilisicongress.com/" title="W3Schools Free Online Web Tutorials">
                 </iframe>';
+            //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
-            //$resp = $mail->send();
+            $resp = $mail->send();
             $mail->smtpClose();
 
             return [
