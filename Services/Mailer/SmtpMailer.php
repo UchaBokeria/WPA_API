@@ -75,9 +75,9 @@
                 'verify_peer_name' => false,
                 'allow_self_signed' => true
                 )
-            ); 
+            );
             
-            $mail->addAttachment("https://wpatbilisicongress.com/static/media/wpa-logo.928ce6b4.svg"); 
+            $mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
             $resp = $mail->send();
             $mail->smtpClose();
