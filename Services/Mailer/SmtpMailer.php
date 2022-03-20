@@ -77,7 +77,7 @@
             // );
 
             $mail->isHTML(true);
-            $mail->Body = '<img src="https://wpatbilisicongress.com/static/media/wpa-logo.928ce6b4.svg"> X';
+            $mail->Body = '<img src="https://wpatbilisicongress.com/static/media/background.41ed4dc9.jpg"> X';
             //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
 
             $resp = $mail->send();
