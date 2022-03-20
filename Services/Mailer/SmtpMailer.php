@@ -75,7 +75,7 @@
             //     )
             // );
 
-            $mail->AddEmbeddedImage('logosvg.svg', 'logo_2u');
+            $mail->AddEmbeddedImage('logosvg.svg', 'logo_2u', "logosvg.svg");
             $mail->isHTML(true);
             $mail->Body = '<img alt="PHPMailer" src=\"cid:logo_2u\">';
             //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
