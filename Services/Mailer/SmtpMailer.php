@@ -66,20 +66,18 @@
             $mail->Password = MAILPASSWORD;
             $mail->Subject = $this->Options['subject'];
             $mail->setFrom(MAILFORMNAME);
+            $mail->isHTML(MAILISHTML);
+            $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
-
-            // $mail->SMTPOptions = array(
-            //     'ssl' => array(
-            //     'verify_peer' => false,
-            //     'verify_peer_name' => false,
-            //     'allow_self_signed' => true
-            //     )
-            // );
-
-            $mail->isHTML(true);
-            $mail->Body = '<img src="https://wpatbilisicongress.com/static/media/background.41ed4dc9.jpg"> X';
-            //$mail->addAttachment("./Sources/Doc/logosvg.svg","logosvg"); 
-
+            /* /
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                )
+            ); 
+            /**/
             $resp = $mail->send();
             $mail->smtpClose();
 
