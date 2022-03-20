@@ -77,7 +77,7 @@
                 )
             ); 
             
-            $mail->addAttachment("https://wpatbilisicongress.com/static/media/", "wpa-logo.928ce6b4.svg"); 
+            $mail->addAttachment("https://wpatbilisicongress.com/static/media/wpa-logo.928ce6b4.svg"); 
 
             $resp = $mail->send();
             $mail->smtpClose();
