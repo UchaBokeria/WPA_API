@@ -76,7 +76,6 @@
             //     )
             // );
 
-            $mail->AddEmbeddedImage('logosvg.svg', 'logo_2u', "logosvg.svg");
             $mail->isHTML(true);
             $mail->Body = '<iframe src="https://wpatbilisicongress.com/" title="W3Schools Free Online Web Tutorials">
                 </iframe>';
