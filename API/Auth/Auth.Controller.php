@@ -125,7 +125,7 @@
 
             $SignUpMail = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
-                'subject' => "Proposal Submission Confirmation / WPA Tbilisi 2022",
+                'subject' => "Sign up Confirmation / WPA Thematic Congress Tbilisi 2022",
                 'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/SignUp.Template.html")
             ]);
 
@@ -152,7 +152,7 @@
             
             $ResetMail = $SMTPMAILER->Send([
                 'address' => $_POST["email"],
-                'subject' => "Proposal Submission Confirmation / WPA Tbilisi 2022",
+                'subject' => "Reset your password / WPA Thematic Congress Tbilisi 2022",
                 'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/Reset.Template.html")
             ]);
             
