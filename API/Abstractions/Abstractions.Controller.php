@@ -67,7 +67,7 @@
                 
                 $index++;
 
-                parent::SET("   INSERT INTO Abstraction_keywords SET abstraction_id = :abstraction_id, name = :name; ", 
+                parent::SET("   INSERT INTO Abstractions_keywords SET abstraction_id = :abstraction_id, name = :name; ", 
                                                                 [
                                                                     'abstraction_id' => $Abstraction_id,
                                                                     'name' => $value
