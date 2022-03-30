@@ -32,7 +32,7 @@ function LearnControllers($dir){
                 realpath($dir.DIRECTORY_SEPARATOR.$ff)) 
             );
         }
-        else if(strpos($ff,'.Validation.php')) {
+        if(strpos($ff,'.Validation.php')) {
             $name = str_replace('.Validation.php', '', $ff);
 
             $Controllers[$name] = str_replace( ABSOLUTEPATH, '' , str_replace(
