@@ -50,27 +50,27 @@
 
             $index = 1;
             foreach ($_POST['authors'] as $value) {
-                foreach ($value as $key => $Templateval) 
-                    $_POST["author_$key"."_"."$index"] = $Templateval;
+                foreach ($value as $Templateval) 
+                    $_POST["author_$index"] = $Templateval;
                 
                 $index++;
 
                 parent::SET("   INSERT INTO Abstraction_authors SET abstraction_id = :abstraction_id, name = :name; ", 
                                                                 [
                                                                     'abstraction_id' => $Abstraction_id,
-                                                                    'name' => $value["name"]
+                                                                    'name' => $value
                                                                 ]);
             }
             foreach ($_POST['keywords'] as $value) {
-                foreach ($value as $key => $Templateval) 
-                    $_POST["keyword_$key"."_"."$index"] = $Templateval;
+                foreach ($value as $Templateval) 
+                    $_POST["keyword_$index"] = $Templateval;
                 
                 $index++;
 
                 parent::SET("   INSERT INTO Abstraction_keywords SET abstraction_id = :abstraction_id, name = :name; ", 
                                                                 [
                                                                     'abstraction_id' => $Abstraction_id,
-                                                                    'name' => $value["name"]
+                                                                    'name' => $value
                                                                 ]);
             }
 
