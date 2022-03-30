@@ -118,9 +118,10 @@
         public function UploadFile()
         {
 
-            $id = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
+            $info = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
             if(!parent::Exists()) return [ 'error' => true, 'msg' => 'Token is Wrong' ];
 
+            $id = $info[0]["id"];
             $file = $_FILES["file"];
             $directory = "/Sources/Uploads/" . date('y-m-d');
             
