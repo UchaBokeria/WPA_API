@@ -1,0 +1,17 @@
+{
+    "token": "fa9c5d0d012ef904d5e674f58b763ca732325f30335f31342e3035303331387563686131626f6b6572696140676d61696c2e636f6d",
+    "title": "Test",
+    "topics": "Topics TEst",
+    "preference": "preference",
+    "introduction": "introduction",
+    "objectives": "objectives",
+    "methods": "methods",
+    "results": "results",
+    "conclution": "conclution",
+    "abstract_file": "abstract_file",
+    "type": "type",
+    "eposter_file": "eposter_file",
+    "eposter_audio": "eposter_audio",
+    "authors": ["authors1", "authors2", "authors3"],
+    "keywords": ["keywords1", "keywords2", "keywords3"]
+}
