@@ -123,7 +123,7 @@
 
             $id = $info[0]["id"];
             $file = $_FILES["file"];
-            $directory = "/Sources/Uploads/" . date('y-m-d');
+            $directory = "./Sources/Uploads/" . date('y-m-d');
             
             if(!file_exists($directory)) mkdir($directory);
             if(!file_exists($directory . "/$id")) mkdir($directory . "/$id");
