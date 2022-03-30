@@ -32,6 +32,7 @@ function LearnControllers($dir){
                 realpath($dir.DIRECTORY_SEPARATOR.$ff)) 
             );
         }
+        
         if(strpos($ff,'.Validation.php')) {
             $name = str_replace('.Validation.php', '', $ff);
 
@@ -40,6 +41,7 @@ function LearnControllers($dir){
                 realpath($dir.DIRECTORY_SEPARATOR.$ff)) 
             );
         }
+        
     }
 
 }
