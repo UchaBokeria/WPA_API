@@ -2,7 +2,7 @@
 
     class Abstractions extends Database
     {
-         
+
         public function Read()
         {
             return ['commingsoon' => true];
@@ -114,4 +114,39 @@
             ];
 
         }
+
+        public function UploadFile()
+        {
+
+            $id = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
+            if(!parent::Exists()) return [ 'error' => true, 'msg' => 'Token is Wrong' ];
+
+            $file = $_FILES["file"];
+            $directory = "/Sources/Uploads/" . date('y-m-d');
+            
+            if(!file_exists($directory)) mkdir($directory);
+            if(!file_exists($directory . "/$id")) mkdir($directory . "/$id");
+
+            $directory .= "/$id/";
+            $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
+            
+            $target = $directory . $uniqueName;
+            $valid = (new AbstractionsValidation)::CheckFileToUpload();
+
+            if($valid["error"]) 
+                return [ 'error' => true, 'msg' => $valid["msg"] ];
+
+            return (!move_uploaded_file($_FILES["tmp"], $target)) ?
+                [ 
+                    'error' => true, 
+                    'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions' 
+                ] : 
+                [
+                    'error' => false,
+                    'file' => $target,
+                    'msg' => 'File Has Been Uploaded Successfully'
+                ];
+            
+        }
+
     }

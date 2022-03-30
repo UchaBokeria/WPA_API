@@ -1,2 +1,3 @@
 .vscode
+./Sources/Uploads
 ./Config/MySQL.Config.php
