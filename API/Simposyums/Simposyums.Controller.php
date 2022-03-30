@@ -13,6 +13,11 @@
             
             if(GUARDIAN['error']) return GUARDIAN;
 
+            $email = parent::GET("SELECT email FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
+            if(!parent::Exists()) return [ 'error' => true, 'msg'=> 'Token is Wrong' ];
+
+            $_POST["mainEmail"] = $email[0]["email"];
+
             parent::SET("   INSERT INTO Simposyums SET  fullname = :fullname,
                                                         email = :email,
                                                         title = :title,
@@ -82,7 +87,7 @@
             global $SMTPMAILER;
             
             $CustomerResponse = $SMTPMAILER->Send([
-                'address' => $_POST["email"],
+                'address' => $_POST["mainEmail"],
                 'subject' => "Proposal Submission Confirmation / WPA Thematic Congress Tbilisi 2022",
                 'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Simposyums.Template.html")
             ]);
