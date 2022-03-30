@@ -136,7 +136,7 @@
             if($valid["error"]) 
                 return [ 'error' => true, 'msg' => $valid["msg"] ];
 
-            return (!move_uploaded_file($_FILES["tmp"], $target)) ?
+            return (!move_uploaded_file($_FILES["tmp_name"], $target)) ?
                 [ 
                     'error' => true, 
                     'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions' 
