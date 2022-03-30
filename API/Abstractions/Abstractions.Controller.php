@@ -117,6 +117,7 @@
 
         public function UploadFile()
         {
+            echo $_POST["token"] ."/////////";die();
 
             $info = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
             if(!parent::Exists()) return [ 'error' => true, 'msg' => 'Token is Wrong' ];
