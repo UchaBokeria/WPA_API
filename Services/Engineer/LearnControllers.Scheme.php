@@ -32,6 +32,15 @@ function LearnControllers($dir){
                 realpath($dir.DIRECTORY_SEPARATOR.$ff)) 
             );
         }
+        
+        if(strpos($ff,'.Validation.php')) {
+            $name = str_replace('.Validation.php', '', $ff) . "Validation";
+
+            $Controllers[$name] = str_replace( ABSOLUTEPATH, '' , str_replace(
+                '/home/u609332810/domains/wpatbilisicongress.com/public_html/Server','',
+                realpath($dir.DIRECTORY_SEPARATOR.$ff)) 
+            );
+        }
     }
 
 }
