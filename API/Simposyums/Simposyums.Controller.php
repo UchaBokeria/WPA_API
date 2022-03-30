@@ -94,7 +94,7 @@
 
             $AdminResponse = $SMTPMAILER->Send([
                 'address' => 'wpatbilisicongress@gmail.com',
-                'subject' => "Symposium  By: " .  $_POST["email"],
+                'subject' => "Symposium  By: " .  $_POST["mainEmail"],
                 'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Simposyums.Template.html")
             ]);
 
