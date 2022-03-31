@@ -1,6 +1,6 @@
 <html>
   <head>
-  <style>
+   <style>
     @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
     * {
@@ -19,6 +19,14 @@
       min-height: 500px;
       margin: 0 auto;
     }
+    .header-logo-wrapper {
+      width: 100%;
+    }
+
+    .header-logo-wrapper img {
+      width: 100%;
+    }
+    
     .logo-wrapper {
       height: 55px;
     }
@@ -33,6 +41,7 @@
       height: 100%;
       padding: 25px 50px;
       margin: 30px 0 45px;
+      overflow-x: auto;
     }
     h1 {
       font-size: 24px;
@@ -75,10 +84,15 @@
     }
     .links-wrapper {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       padding: 0;
+      margin: 0 auto;
+      max-width: 520px;
+      width: 100%;
+    }
+    .links-wrapper li {
+      display: inline-block;
     }
     .links-wrapper li a {
       font-size: 14px;
@@ -158,48 +172,45 @@
   </head>
   <body>
     <div class="container">
-      <div class="logo-wrapper">
+      <div class="header-logo-wrapper">
         <a href="https://wpatbilisicongress.com/" target="_blank">
           <img
-            src="https://wpatbilisicongress.com/static/media/logo.jpg"
-            alt="wpatbilisicongress"
+            src="https://wpatbilisicongress.com/mail-logo.png"
+            alt="WPA Tbilisi Congress"
           />
         </a>
       </div>
       <div class="mail-wrapper">
         <h1>Dear {salutation} {user}!</h1>
         <p>
-          Thank you for filling out Symposium Proposal form.<br />If your inquiry is
-          urgent, please contact us immediately at
-          <a
-            class="mail"
-            href="mailto:wpatbilisicongress@gmail.com"
-            target="_blank"
-            >wpatbilisicongress@gmail.com
+          Your Symposium proposal for
+          <a class="mail" href="https://wpatbilisicongress.com/" target="_blank"
+            >WPA Thematic Congress Tbilisi 2022
           </a>
-          and we will reply by email as soon as possible.
+          has been submitted successfully. Thank you for your interest!
         </p>
+        <div style="overflow-x: auto">
         <table class="proposer">
           <tr>
             <td class="title">Proposer Name</td>
-            <td> {fullname} </td>
+            <td>{fullname}</td>
           </tr>
           <tr>
             <td class="title">Proposer Email</td>
-            <td> {email} </td>
+            <td>{email}</td>
           </tr>
           <tr>
             <td class="title">Symposium Title</td>
-            <td> {title} </td>
+            <td>{title}</td>
           </tr>
         </table>
+        </div>
         <br />
-        <!-- <h2><span>Symposium Title:</span> Symposium Title</h2> -->
         <h2><span>An overall abstract describing the symposium:</span></h2>
-        <p>
-          {description}
-        </p>
+        <p>{description}</p>
         <br />
+        <div style="overflow-x: auto">
+
         <table class="chairs">
           <tr>
             <th>Chair & Co-chair</th>
@@ -209,73 +220,77 @@
           </tr>
           <tr>
             <td>Chair</td>
-            <td> {chair_name} </td>
-            <td> {chair_country} </td>
-            <td> {chair_email} </td>
+            <td>{chair_name}</td>
+            <td>{chair_country}</td>
+            <td>{chair_email}</td>
           </tr>
           <tr>
             <td>Co-chair</td>
-            <td> {cochair_name} </td>
-            <td> {cochair_country} </td>
-            <td> {cochair_email} </td>
+            <td>{cochair_name}</td>
+            <td>{cochair_country}</td>
+            <td>{cochair_email}</td>
           </tr>
         </table>
+        </div>
         <br />
-        <table class="presenters">
-          <tr>
-            <th>Presenters</th>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Email</th>
-            <th>Title of Presentation</th>
-          </tr>
-          <tr>
-            <td>Presenter 1</td>
-            <td>{presentator_name_1}</td>
-            <td>{presentator_country_1}</td>
-            <td>{presentator_email_1}</td>
-            <td>{presentator_title_1}</td>
-          </tr>
-          <tr>
-            <td>Presenter 2</td>
-            <td>{presentator_name_2}</td>
-            <td>{presentator_country_2}</td>
-            <td>{presentator_email_2}</td>
-            <td>{presentator_title_2}</td>
-          </tr>
-          <tr>
-            <td>Presenter 3</td>
-            <td>{presentator_name_3}</td>
-            <td>{presentator_country_3}</td>
-            <td>{presentator_email_3}</td>
-            <td>{presentator_title_3}</td>
-          </tr>
-          <tr>
-            <td>Presenter 4</td>
-            <td>{presentator_name_4}</td>
-            <td>{presentator_country_4}</td>
-            <td>{presentator_email_4}</td>
-            <td>{presentator_title_4}</td>
-          </tr>
-        </table>
+        <div style="overflow-x: auto">
+          <table class="presenters">
+            <tr>
+              <th>Presenters</th>
+              <th>Name</th>
+              <th>Country</th>
+              <th>Email</th>
+              <th>Title of Presentation</th>
+            </tr>
+            <tr>
+              <td>Presenter 1</td>
+              <td>{presentator_name_1}</td>
+              <td>{presentator_country_1}</td>
+              <td>{presentator_email_1}</td>
+              <td>{presentator_title_1}</td>
+            </tr>
+            <tr>
+              <td>Presenter 2</td>
+              <td>{presentator_name_2}</td>
+              <td>{presentator_country_2}</td>
+              <td>{presentator_email_2}</td>
+              <td>{presentator_title_2}</td>
+            </tr>
+            <tr>
+              <td>Presenter 3</td>
+              <td>{presentator_name_3}</td>
+              <td>{presentator_country_3}</td>
+              <td>{presentator_email_3}</td>
+              <td>{presentator_title_3}</td>
+            </tr>
+            <tr>
+              <td>Presenter 4</td>
+              <td>{presentator_name_4}</td>
+              <td>{presentator_country_4}</td>
+              <td>{presentator_email_4}</td>
+              <td>{presentator_title_4}</td>
+            </tr>
+          </table>
+        </div>
         <p>
-          Thank you, <br />
-          The WPA Tbilisi Congress Team
+          You will be informed no later than June 15 th  2022 Scientific
+          Committee’s decision whether your proposal is accepted.
+        </p>
+        <p>
+          Kind regards, <br />
+          The Congress Secretariat
         </p>
       </div>
-      <div
-        style="display: flex; justify-content: center; align-items: center"
-        class="logo-wrapper"
-      >
+      <div style="text-align: center" class="logo-wrapper">
         <a
           style="height: 100%"
           href="https://wpatbilisicongress.com/"
           target="_blank"
         >
-          <img
-            src="https://wpatbilisicongress.com/static/media/logo.jpg"
-            alt="wpatbilisicongress"
-          />
+        <img
+        src="https://wpatbilisicongress.com/mail-logo-2.png"
+        alt="WPA Tbilisi Congress"
+      />
         </a>
       </div>
       <p class="copyright">

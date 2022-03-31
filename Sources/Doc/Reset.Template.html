@@ -20,6 +20,13 @@
         min-height: 500px;
         margin: 0 auto;
       }
+      .header-logo-wrapper {
+        width: 100%;
+      }
+
+      .header-logo-wrapper img {
+        width: 100%;
+      }
       .logo-wrapper {
         height: 55px;
       }
@@ -31,7 +38,7 @@
       .mail-wrapper {
         border: 1px solid #e2e2e2;
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         padding: 25px 50px;
         margin: 30px 0 45px;
       }
@@ -75,26 +82,31 @@
         text-align: center;
       }
       .links-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 22px;
-        padding: 0;
-      }
-      .links-wrapper li a {
-        font-size: 14px;
-        color: #15c;
-        font-weight: 400;
-      }
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 520px;
+      width: 100%;
+    }
+    .links-wrapper li {
+      display: inline-block;
+    }
+    .links-wrapper li a {
+      font-size: 14px;
+      color: #15c;
+      font-weight: 400;
+    }
     </style>
   </head>
-  <body>
+    <body>
     <div class="container">
-      <div class="logo-wrapper">
+      <div class="header-logo-wrapper">
         <a href="https://wpatbilisicongress.com/" target="_blank">
           <img
-            src="https://wpatbilisicongress.com/static/media/logo.jpg"
-            alt="wpatbilisicongress"
+          src="https://wpatbilisicongress.com/mail-logo.png"
+          alt="WPA Tbilisi Congress"
           />
         </a>
       </div>
@@ -123,12 +135,12 @@
         </p>
         <br />
         <p>
-          Thank you, <br />
-          The WPA Tbilisi Congress Team
+          Kind regards, <br />
+          The Congress Secretariat
         </p>
       </div>
       <div
-        style="display: flex; justify-content: center; align-items: center"
+        style="text-align: center;"
         class="logo-wrapper"
       >
         <a
@@ -137,8 +149,8 @@
           target="_blank"
         >
           <img
-            src="https://wpatbilisicongress.com/static/media/logo.jpg"
-            alt="wpatbilisicongress"
+          src="https://wpatbilisicongress.com/mail-logo-2.png"
+          alt="WPA Tbilisi Congress"
           />
         </a>
       </div>
