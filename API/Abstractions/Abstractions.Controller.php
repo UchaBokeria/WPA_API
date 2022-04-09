@@ -121,7 +121,7 @@
 
             $id = $info[0]["id"];
             $file = $_FILES["file"];
-            die(getcwd());
+
             $sep = DIRECTORY_SEPARATOR ;
             $directory = ".".$sep."Sources".$sep."Uploads".$sep."" . date('y-m-d');
             
@@ -129,6 +129,7 @@
             if(!file_exists($directory . "".$sep."$id")) mkdir($directory . "".$sep."$id");
 
             $directory .= "".$sep."$id".$sep."";
+            die(var_dump(file_exists($directory)));
             $chmod = "0777";
             chmod($directory, octdec($chmod));
             $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
