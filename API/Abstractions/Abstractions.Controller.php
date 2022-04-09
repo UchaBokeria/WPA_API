@@ -127,7 +127,7 @@
             if(!file_exists($directory . "/$id")) mkdir($directory . "/$id");
 
             $directory .= "/$id/";
-            $chmod = "777";
+            $chmod = "0777";
             chmod($directory, octdec($chmod));
             $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
             
