@@ -27,7 +27,6 @@
                                                             results = :results,
                                                             conclution = :conclution,
                                                             abstract_file = :abstract_file,
-                                                            type = :type,
                                                             eposter_file = :eposter_file,
                                                             eposter_audio = :eposter_audio,
                                                             createdAt = NOW(); ",
@@ -41,7 +40,6 @@
                                                         'results' => $_POST["results"],
                                                         'conclution' => $_POST["conclution"],
                                                         'abstract_file' => $_POST["abstract_file"],
-                                                        'type' => $_POST["type"],
                                                         'eposter_file' => $_POST["eposter_file"],
                                                         'eposter_audio' => $_POST["eposter_audio"]
                                                     ]
