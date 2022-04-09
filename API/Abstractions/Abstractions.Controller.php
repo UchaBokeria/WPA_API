@@ -132,7 +132,8 @@
 
             $chmod = "0777";
             chmod($directory, octdec($chmod));
-            $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
+            $fname = explode(".",$file["name"]);
+            $uniqueName = $fname[0] . "-" . date('y_m_d-h_m_s') . $id . "." . $fname[1];
             
             $target = $directory . $uniqueName;
             $valid = (new AbstractionsValidation)::CheckFileToUpload();
