@@ -121,6 +121,7 @@
 
             $id = $info[0]["id"];
             $file = $_FILES["file"];
+            die(getcwd());
             $sep = DIRECTORY_SEPARATOR ;
             $directory = ".".$sep."Sources".$sep."Uploads".$sep."" . date('y-m-d');
             
