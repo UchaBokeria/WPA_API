@@ -141,7 +141,7 @@
                 [ 
                     'error' => true, 
                     'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions',
-                    'directory' => $directory,
+                    'directory' => "$directory",
                 ] : 
                 [
                     'error' => false,
