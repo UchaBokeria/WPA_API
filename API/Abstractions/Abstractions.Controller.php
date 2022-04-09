@@ -139,7 +139,7 @@
 
             if($valid["error"]) 
                 return [ 'error' => true, 'msg' => $valid["msg"] ];
-die(var_dump($_REQUEST));
+die(var_dump($_FILES));
             return (!move_uploaded_file($_FILES["file"]["tmp_name"], $target)) ?
                 [ 
                     'error' => true, 
