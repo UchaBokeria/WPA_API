@@ -121,12 +121,13 @@
 
             $id = $info[0]["id"];
             $file = $_FILES["file"];
-            $directory = "./Sources/Uploads/" . date('y-m-d');
+            $sep = PATH_SEPARATOR;
+            $directory = ".".$sep."Sources".$sep."Uploads".$sep."" . date('y-m-d');
             
             if(!file_exists($directory)) mkdir($directory);
-            if(!file_exists($directory . "/$id")) mkdir($directory . "/$id");
+            if(!file_exists($directory . "".$sep."$id")) mkdir($directory . "".$sep."$id");
 
-            $directory .= "/$id/";
+            $directory .= "".$sep."$id".$sep."";
             $chmod = "0777";
             chmod($directory, octdec($chmod));
             $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
