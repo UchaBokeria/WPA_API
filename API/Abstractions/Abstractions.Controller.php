@@ -115,7 +115,8 @@
 
         public function UploadFile()
         {
-
+            var_dump($_REQUEST);
+            var_dump($_FILES);die();
             $info = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
             if(!parent::Exists()) return [ 'error' => true, 'msg' => 'Token is Wrong' ];
 
@@ -141,7 +142,7 @@
                 return [ 'error' => true, 'msg' => $valid["msg"] ];
 
             return (!move_uploaded_file($_FILES["file"]["tmp_name"], $target)) ?
-                [ 
+                [
                     'error' => true, 
                     'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions',
                     'directory' => $_FILES["file"]["tmp_name"],
