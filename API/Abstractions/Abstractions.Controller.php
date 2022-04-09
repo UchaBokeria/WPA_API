@@ -132,7 +132,6 @@
 
             $chmod = "0777";
             chmod($directory, octdec($chmod));
-            die(var_dump(is_writable($directory)));
             $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
             
             $target = $directory . $uniqueName;
@@ -145,7 +144,7 @@
                 [ 
                     'error' => true, 
                     'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions',
-                    'directory' => "$directory",
+                    'directory' => $_FILES["file"]["tmp_name"],
                 ] : 
                 [
                     'error' => false,
