@@ -129,9 +129,10 @@
             if(!file_exists($directory . "".$sep."$id")) mkdir($directory . "".$sep."$id");
 
             $directory .= "".$sep."$id".$sep."";
-            die(var_dump(file_exists($directory)));
+
             $chmod = "0777";
             chmod($directory, octdec($chmod));
+            die(var_dump(is_writable($directory)));
             $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
             
             $target = $directory . $uniqueName;
