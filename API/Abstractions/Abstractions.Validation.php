@@ -19,5 +19,15 @@
             return true;
         }
 
+        public static function audioFile()
+        {
+            return true;
+        }
+
+        public static function eposterFile()
+        {
+            return true;
+        }
+
 
     }
