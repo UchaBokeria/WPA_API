@@ -140,7 +140,8 @@
             return (!move_uploaded_file($_FILES["file"]["tmp_name"], $target)) ?
                 [ 
                     'error' => true, 
-                    'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions' 
+                    'msg' => 'File Upload Has Been Faild. Unknown Error, Please Check Permissions',
+                    'directory' => $directory,
                 ] : 
                 [
                     'error' => false,
