@@ -128,7 +128,7 @@
 
             $directory .= "/$id/";
             $chmod = "0777";
-            chmod($directory, ($chmod));
+            chmod($directory, octdec($chmod));
             $uniqueName = $file["name"] . "-" . date('y_m_d-h_m_s') . $id;
             
             $target = $directory . $uniqueName;
