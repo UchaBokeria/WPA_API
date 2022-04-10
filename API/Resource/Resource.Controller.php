@@ -1,9 +1,9 @@
 <?php
 
-    class Auth extends Database
+    class Resource extends Database
     {
    
-        public function Login()
+        public function GetFile()
         {
             $path = $_POST["path"];
             header('Location: $path');
