@@ -123,7 +123,7 @@
             $file = $_FILES["file"];
 
             $sep = DIRECTORY_SEPARATOR ;
-            $directory = ".".$sep."Sources".$sep."Uploads".$sep."" . date('y-m-d');
+            $directory = "..".$sep."Sources".$sep."Uploads".$sep."" . date('y-m-d');
             
             if(!file_exists($directory)) mkdir($directory);
             if(!file_exists($directory . "".$sep."$id")) mkdir($directory . "".$sep."$id");
