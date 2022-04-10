@@ -5,7 +5,7 @@
    
         public function GetFile()
         {
-            $path = $_POST["path"];
+            $path = $_GET["path"];
             header("Location: $path");
         }
 
