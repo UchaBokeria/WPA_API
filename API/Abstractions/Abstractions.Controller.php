@@ -54,7 +54,6 @@
                 $index++;
 
                 parent::SET("   INSERT INTO Abstractions_authors SET    abstraction_id = :abstraction_id, 
-                                                                        name = :name,
                                                                         institute_company = :institute_company,
                                                                         city = :city,
                                                                         country = :country; ", 
