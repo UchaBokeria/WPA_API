@@ -48,8 +48,8 @@
 
             $index = 1;
             foreach ($_POST['authors'] as $value) {
-                foreach ($value as $Templateval) 
-                    $_POST["author_$index"] = $Templateval;
+                // foreach ($value as $Templateval) 
+                //     $_POST["author_$index"] = $Templateval;
                 
                 $index++;
 
