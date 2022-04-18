@@ -53,10 +53,16 @@
                 
                 $index++;
 
-                parent::SET("   INSERT INTO Abstractions_authors SET abstraction_id = :abstraction_id, name = :name; ", 
+                parent::SET("   INSERT INTO Abstractions_authors SET    abstraction_id = :abstraction_id, 
+                                                                        name = :name,
+                                                                        institute_company = :institute_company,
+                                                                        city = :city,
+                                                                        country = :country; ", 
                                                                 [
                                                                     'abstraction_id' => $Abstraction_id,
-                                                                    'name' => $value
+                                                                    'institute_company' => $value["institute_company"],
+                                                                    'city' => $value["city"],
+                                                                    'country' => $value["country"],
                                                                 ]);
             }
             foreach ($_POST['keywords'] as $value) {
