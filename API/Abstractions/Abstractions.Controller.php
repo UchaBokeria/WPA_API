@@ -45,8 +45,8 @@
                                                     ]
                                                 );
             $Abstraction_id = parent::GetLastId();
-
             $index = 1;
+        
             foreach ($_POST['authors'] as $value) {
                 // foreach ($value as $Templateval) 
                 //     $_POST["author_$index"] = $Templateval;
@@ -63,6 +63,22 @@
                                                                     'city' => $value["city"],
                                                                     'country' => $value["country"],
                                                                 ]);
+                $abstractions_authors_id = parent::GetLastId();
+
+                foreach ($value["details"] as $key => $value) {
+
+                    parent::SET("   INSERT INTO Abstractions_authors_details SET    abstractions_authors_id = :abstractions_authors_id, 
+                                                                                    name = :name,
+                                                                                    city = :city,
+                                                                                    country = :country; ", 
+                                                                            [
+                                                                                'abstraction_id' => $abstractions_authors_id,
+                                                                                'name' => $value["name"],
+                                                                                'city' => $value["city"],
+                                                                                'country' => $value["country"],
+                                                                            ]);
+
+                }
             }
             foreach ($_POST['keywords'] as $value) {
                 foreach ($value as $Templateval) 
