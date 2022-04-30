@@ -73,6 +73,7 @@
 
                     parent::SET("   INSERT INTO Abstractions_authors_details SET    abstractions_authors_id = :abstractions_authors_id, 
                                                                                     institute_company = :institute_company,
+                                                                                    affiliation_number = :affiliation_number,
                                                                                     city = :city,
                                                                                     country = :country; ", 
                                                                             [
