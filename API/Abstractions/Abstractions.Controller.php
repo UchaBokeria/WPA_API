@@ -76,7 +76,7 @@
                                                                                     city = :city,
                                                                                     country = :country; ", 
                                                                             [
-                                                                                'abstraction_id' => $abstractions_authors_id,
+                                                                                'abstractions_authors_id' => $abstractions_authors_id,
                                                                                 'affiliation_number' => $value["affiliation_number"],
                                                                                 'institute_company' => $value["institute_company"],
                                                                                 'city' => $value["city"],
