@@ -54,26 +54,31 @@
                 $index++;
 
                 parent::SET("   INSERT INTO Abstractions_authors SET    abstraction_id = :abstraction_id, 
-                                                                        institute_company = :institute_company,
-                                                                        city = :city,
-                                                                        country = :country; ", 
+                                                                        initials = :initials,
+                                                                        last_name = :last_name,
+                                                                        affiliation_1 = :affiliation_1,
+                                                                        affiliation_2 = :affiliation_2,
+                                                                        affiliation_3 = :affiliation_3; ", 
                                                                 [
                                                                     'abstraction_id' => $Abstraction_id,
-                                                                    'institute_company' => $value["institute_company"],
-                                                                    'city' => $value["city"],
-                                                                    'country' => $value["country"],
+                                                                    'initials' => $value["initials"],
+                                                                    'last_name' => $value["last_name"],
+                                                                    'affiliation_1' => $value["affiliation_1"],
+                                                                    'affiliation_2' => $value["affiliation_2"],
+                                                                    'affiliation_3' => $value["affiliation_3"],
                                                                 ]);
                 $abstractions_authors_id = parent::GetLastId();
 
                 foreach ($value["details"] as $key => $value) {
 
                     parent::SET("   INSERT INTO Abstractions_authors_details SET    abstractions_authors_id = :abstractions_authors_id, 
-                                                                                    name = :name,
+                                                                                    institute_company = :institute_company,
                                                                                     city = :city,
                                                                                     country = :country; ", 
                                                                             [
                                                                                 'abstraction_id' => $abstractions_authors_id,
-                                                                                'name' => $value["name"],
+                                                                                'affiliation_number' => $value["affiliation_number"],
+                                                                                'institute_company' => $value["institute_company"],
                                                                                 'city' => $value["city"],
                                                                                 'country' => $value["country"],
                                                                             ]);
