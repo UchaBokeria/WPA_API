@@ -25,7 +25,7 @@
                                                             objectives = :objectives,
                                                             methods = :methods,
                                                             results = :results,
-                                                            conclution = :conclution,
+                                                            conclusion = :conclusion,
                                                             abstract_file = :abstract_file,
                                                             eposter_file = :eposter_file,
                                                             eposter_audio = :eposter_audio,
@@ -38,7 +38,7 @@
                                                         'objectives' => $_POST["objectives"],
                                                         'methods' => $_POST["methods"],
                                                         'results' => $_POST["results"],
-                                                        'conclution' => $_POST["conclution"],
+                                                        'conclusion' => $_POST["conclusion"],
                                                         'abstract_file' => $_POST["abstract_file"],
                                                         'eposter_file' => $_POST["eposter_file"],
                                                         'eposter_audio' => $_POST["eposter_audio"]
@@ -88,7 +88,7 @@
 
                 
             }
-            
+
             foreach ($_POST['keywords'] as $value) {
                 foreach ($value as $Templateval) 
                     $_POST["keyword_$index"] = $Templateval;
