@@ -46,7 +46,24 @@
                                                 );
             $Abstraction_id = parent::GetLastId();
             $index = 1;
-        
+
+            foreach ($_POST['affiliations'] as $key => $value) {
+
+                parent::SET("   INSERT INTO Abstractions_affiliations SET   abstractions_id = :abstractions_id, 
+                                                                            institute_company = :institute_company,
+                                                                            affiliation_number = :affiliation_number,
+                                                                            city = :city,
+                                                                            country = :country; ", 
+                                                                        [
+                                                                            'abstractions_id' => $Abstraction_id,
+                                                                            'affiliation_number' => $value["affiliation_number"],
+                                                                            'institute_company' => $value["institute_company"],
+                                                                            'city' => $value["city"],
+                                                                            'country' => $value["country"],
+                                                                        ]);
+
+            }
+
             foreach ($_POST['authors'] as $value) {
                 // foreach ($value as $Templateval) 
                 //     $_POST["author_$index"] = $Templateval;
@@ -69,23 +86,9 @@
                                                                 ]);
                 $abstractions_authors_id = parent::GetLastId();
 
-                foreach ($value["details"] as $key => $value) {
-
-                    parent::SET("   INSERT INTO Abstractions_authors_details SET    abstractions_authors_id = :abstractions_authors_id, 
-                                                                                    institute_company = :institute_company,
-                                                                                    affiliation_number = :affiliation_number,
-                                                                                    city = :city,
-                                                                                    country = :country; ", 
-                                                                            [
-                                                                                'abstractions_authors_id' => $abstractions_authors_id,
-                                                                                'affiliation_number' => $value["affiliation_number"],
-                                                                                'institute_company' => $value["institute_company"],
-                                                                                'city' => $value["city"],
-                                                                                'country' => $value["country"],
-                                                                            ]);
-
-                }
+                
             }
+            
             foreach ($_POST['keywords'] as $value) {
                 foreach ($value as $Templateval) 
                     $_POST["keyword_$index"] = $Templateval;
