@@ -13,10 +13,20 @@
             
             if(GUARDIAN['error']) return GUARDIAN;
 
-            $email = parent::GET("SELECT email FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
+            $result = parent::GET("  SELECT  email,
+                                            salutation,
+                                            CONCAT(firstname, ' ' , middlename , ' ' , lastname) AS fullname
+
+                                    FROM    users 
+                                    WHERE   token = :token ; ", 
+                                    [ 'token' => $_POST["token"] ]
+                                );
+
             if(!parent::Exists()) return [ 'error' => true, 'msg'=> 'Token is Wrong' ];
 
-            $_POST["mainEmail"] = $email[0]["email"];
+            $_POST["mainEmail"] = $result[0]["email"];
+            $_POST["fullname"] = $result[0]["fullname"];
+            $_POST["salutation"] = $result[0]["salutation"];
 
             parent::SET("   INSERT INTO Abstractions SET    title = :title,
                                                             topics = :topics,
@@ -47,8 +57,18 @@
             $Abstraction_id = parent::GetLastId();
             $index = 1;
 
-            foreach ($_POST['affiliations'] as $key => $value) {
+            $authors = "";
+            $keywords = "";
+            $affiliations = "";
 
+            foreach ($_POST['affiliations'] as $key => $value) {
+                $affiliations = "  <tr>
+                                            <td>Affiliation" . $value["affiliation_number"] . "</td>
+                                            <td>" . $value["institute_company"] . "</td>
+                                            <td>" . $value["city"] . "</td>
+                                            <td>" . $value["country"] . "</td>
+                                        </tr>";
+                        
                 parent::SET("   INSERT INTO Abstractions_affiliations SET   abstractions_id = :abstractions_id, 
                                                                             institute_company = :institute_company,
                                                                             affiliation_number = :affiliation_number,
@@ -65,10 +85,18 @@
             }
 
             foreach ($_POST['authors'] as $value) {
-                // foreach ($value as $Templateval) 
-                //     $_POST["author_$index"] = $Templateval;
                 
                 $index++;
+                $authors .= "   <tr>
+                                    <td>Author $index</td>
+                                    <td>$value[initials]</td>
+                                    <td>$value[last_name]</td>
+                                    <td>
+                                        $value[affiliation_1] 
+                                        $value[affiliation_2] 
+                                        $value[affiliation_3]
+                                    </td>
+                                </tr>";
 
                 parent::SET("   INSERT INTO Abstractions_authors SET    abstraction_id = :abstraction_id, 
                                                                         initials = :initials,
@@ -94,6 +122,7 @@
                     $_POST["keyword_$index"] = $Templateval;
                 
                 $index++;
+                $keywords .= "<p> $value </p>";
 
                 parent::SET("   INSERT INTO Abstractions_keywords SET abstraction_id = :abstraction_id, name = :name; ", 
                                                                 [
@@ -101,6 +130,10 @@
                                                                     'name' => $value
                                                                 ]);
             }
+
+            $_POST["authors"] = $authors;
+            $_POST["keywords"] = $keywords;
+            $_POST["affiliations"] = $affiliations;
 
             /* Send Symposyum To The Mail */
             return $Response = $this->SendMail();
