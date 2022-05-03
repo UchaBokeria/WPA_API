@@ -176,7 +176,7 @@
                     'eposter_audio' => $_POST["eposter_audio"]
                 ]
             ]);
-            die(file_get_contents("https://wpatbilisicongress.com/Sources/Uploads/22-04-10/1/untitled-22_04_10-11_04_381.mp3"));
+            
             return [
                 'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
                 'msg' => "  Abstraction  Has Been Created. " . 

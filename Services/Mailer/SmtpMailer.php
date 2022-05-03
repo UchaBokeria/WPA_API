@@ -74,7 +74,7 @@
                 foreach ($this->Options["attachment"] as $key => $value) {
                     $value = str_replace("..", "", $value);
                     $mail->addAttachment(
-                        file_get_contents("https://wpatbilisicongress.com$value"),
+                        "https://wpatbilisicongress.com$value",
                         $key
                     );
                 }
