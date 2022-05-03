@@ -74,7 +74,7 @@
                     $value = str_replace("../", "", $value);
                     $file = explode("/", $value);
                     if($file[COUNT($file)-1] != '') {
-                        var_dump(["https://wpatbilisicongress.com/$value",$file[COUNT($file)-1]]);
+                        //var_dump(["https://wpatbilisicongress.com/$value",$file[COUNT($file)-1]]);
                         $mail->addAttachment(
                             "https://wpatbilisicongress.com/$value",
                             $file[COUNT($file)-1]
