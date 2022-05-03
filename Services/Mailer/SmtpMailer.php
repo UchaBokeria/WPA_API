@@ -97,8 +97,8 @@
             return [
                 'error' => !$resp , 
                 'msg' => (!$resp) ? 
-                    'Mail Has Been Failed To Sent' : 
-                    'Mail Has Been Sent'
+                    'Mail Has Been Failed To Sent': 
+                    'Mail Has Been Sent' . "https://wpatbilisicongress.com/$value"
             ];
             
         }
