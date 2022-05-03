@@ -72,10 +72,11 @@
 
             if(!empty($this->Options["attachment"])) {
                 foreach ($this->Options["attachment"] as $key => $value) {
-                    $value = str_replace("..", "", $value);
+                    $value = str_replace("../", "", $value);
+                    $file = explode("/", $value);
                     $mail->addAttachment(
-                        "https://wpatbilisicongress.com$value",
-                        $key
+                        "https://wpatbilisicongress.com/$value",
+                        $file[COUNT($file)-1]
                     );
                 }
             }
