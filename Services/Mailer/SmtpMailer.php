@@ -74,7 +74,7 @@
                 foreach ($this->Options["attachment"] as $key => $value) {
                     $value = str_replace("..", "", $value);
                     $mail->addAttachment(
-                        "https://wpatbilisicongress.com$value",
+                        file_get_contents("https://wpatbilisicongress.com$value"),
                         $key
                     );
                 }
@@ -95,6 +95,7 @@
 
             return [
                 'error' => !$resp , 
+                'file' => file_get_contents("https://wpatbilisicongress.com$value"),
                 'msg' => (!$resp) ? 
                     'Mail Has Been Failed To Sent' : 
                     'Mail Has Been Sent'
