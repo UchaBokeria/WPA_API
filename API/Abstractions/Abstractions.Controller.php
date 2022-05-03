@@ -158,13 +158,23 @@
             $CustomerResponse = $SMTPMAILER->Send([
                 'address' => $_POST["mainEmail"],
                 'subject' => "Proposal Abstraction Confirmation / WPA Thematic Congress Tbilisi 2022",
-                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html")
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html"),
+                'attachments' => [
+                    'abstract_file' => $_POST["abstract_file"],
+                    'eposter_file' => $_POST["eposter_file"],
+                    'eposter_audio' => $_POST["eposter_audio"]
+                ]
             ]);
 
             $AdminResponse = $SMTPMAILER->Send([
                 'address' => 'wpatbilisicongress@gmail.com',
                 'subject' => "Abstraction  By: " .  $_POST["mainEmail"],
-                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html")
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html"),
+                'attachments' => [
+                    'abstract_file' => $_POST["abstract_file"],
+                    'eposter_file' => $_POST["eposter_file"],
+                    'eposter_audio' => $_POST["eposter_audio"]
+                ]
             ]);
 
             return [

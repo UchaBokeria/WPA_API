@@ -69,6 +69,17 @@
             $mail->isHTML(MAILISHTML);
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
+
+            if(!empty($this->Options["attachment"])) {
+                foreach ($this->Options["attachment"] as $key => $value) {
+                    $value = str_replace("..", "", $value);
+                    $mail->addAttachment(
+                        "https://wpatbilisicongress.com$value",
+                        $key
+                    );
+                }
+            }
+            
             /* /
             $mail->SMTPOptions = array(
                 'ssl' => array(
@@ -78,6 +89,7 @@
                 )
             ); 
             /**/
+
             $resp = $mail->send();
             $mail->smtpClose();
 
