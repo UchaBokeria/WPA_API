@@ -62,7 +62,7 @@
             $affiliations = "";
 
             foreach ($_POST['affiliations'] as $key => $value) {
-                $affiliations = "  <tr>
+                $affiliations .= "  <tr>
                                             <td>Affiliation" . $value["affiliation_number"] . "</td>
                                             <td>" . $value["institute_company"] . "</td>
                                             <td>" . $value["city"] . "</td>
@@ -86,7 +86,6 @@
 
             foreach ($_POST['authors'] as $value) {
                 
-                $index++;
                 $authors .= "   <tr>
                                     <td>Author $index</td>
                                     <td>$value[initials]</td>
@@ -97,6 +96,7 @@
                                         $value[affiliation_3]
                                     </td>
                                 </tr>";
+                $index++;
 
                 parent::SET("   INSERT INTO Abstractions_authors SET    abstraction_id = :abstraction_id, 
                                                                         initials = :initials,
