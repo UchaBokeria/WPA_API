@@ -95,7 +95,6 @@
 
             return [
                 'error' => !$resp , 
-                'file' => file_get_contents("https://wpatbilisicongress.com$value"),
                 'msg' => (!$resp) ? 
                     'Mail Has Been Failed To Sent' : 
                     'Mail Has Been Sent'
