@@ -70,9 +70,9 @@
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
             $a = '';
-            var_dump($this->Options["attachment"]);die();
-            if(!empty($this->Options["attachment"])) {
-                foreach ($this->Options["attachment"] as $key => $value) {
+            var_dump($this->Options["attachments"]);die();
+            if(!empty($this->Options["attachments"])) {
+                foreach ($this->Options["attachments"] as $key => $value) {
                     $value = str_replace("../", "", $value);
                     $file = explode("/", $value);
                     $a = "https://wpatbilisicongress.com/$value";
