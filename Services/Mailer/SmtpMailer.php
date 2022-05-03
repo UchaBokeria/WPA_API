@@ -70,7 +70,6 @@
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
 
-            if(!empty($this->Options["attachments"])) {
                 foreach ($this->Options["attachments"] as $key => $value) {
                     $value = str_replace("../", "", $value);
                     $file = explode("/", $value);
@@ -80,7 +79,6 @@
                         $file[COUNT($file)-1]
                     );
                 }
-            }
             
             /* /
             $mail->SMTPOptions = array(
