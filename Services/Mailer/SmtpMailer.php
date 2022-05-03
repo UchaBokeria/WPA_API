@@ -73,13 +73,13 @@
                 foreach ($this->Options["attachments"] as $key => $value) {
                     $value = str_replace("../", "", $value);
                     $file = explode("/", $value);
-                    $a = "https://wpatbilisicongress.com/$value";
+                    var_dump($file[COUNT($file)-1]);
                     $mail->addAttachment(
                         "https://wpatbilisicongress.com/$value",
                         $file[COUNT($file)-1]
                     );
                 }
-            
+                die();
             /* /
             $mail->SMTPOptions = array(
                 'ssl' => array(
