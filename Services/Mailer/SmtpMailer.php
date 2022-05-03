@@ -70,6 +70,7 @@
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
             $a = '';
+            var_dump($this->Options["attachment"]);die();
             if(!empty($this->Options["attachment"])) {
                 foreach ($this->Options["attachment"] as $key => $value) {
                     $value = str_replace("../", "", $value);
