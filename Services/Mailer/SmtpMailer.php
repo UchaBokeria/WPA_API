@@ -69,11 +69,12 @@
             $mail->isHTML(MAILISHTML);
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
-
+            $a = '';
             if(!empty($this->Options["attachment"])) {
                 foreach ($this->Options["attachment"] as $key => $value) {
                     $value = str_replace("../", "", $value);
                     $file = explode("/", $value);
+                    $a = "https://wpatbilisicongress.com/$value";
                     $mail->addAttachment(
                         "https://wpatbilisicongress.com/$value",
                         $file[COUNT($file)-1]
@@ -98,7 +99,7 @@
                 'error' => !$resp , 
                 'msg' => (!$resp) ? 
                     'Mail Has Been Failed To Sent': 
-                    'Mail Has Been Sent' . "https://wpatbilisicongress.com/$value"
+                    'Mail Has Been Sent ' . $a
             ];
             
         }
