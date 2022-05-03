@@ -69,8 +69,7 @@
             $mail->isHTML(MAILISHTML);
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
-            $a = '';
-            var_dump($this->Options["attachments"]);die();
+
             if(!empty($this->Options["attachments"])) {
                 foreach ($this->Options["attachments"] as $key => $value) {
                     $value = str_replace("../", "", $value);
@@ -100,7 +99,7 @@
                 'error' => !$resp , 
                 'msg' => (!$resp) ? 
                     'Mail Has Been Failed To Sent': 
-                    'Mail Has Been Sent ' . $a
+                    'Mail Has Been Sent '
             ];
             
         }
