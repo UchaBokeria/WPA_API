@@ -144,7 +144,7 @@
             if($_POST["abstract_file"] != "") {
                 $_POST["uploadFiles"] .= "  <h2><span>Abstraction</span></h2>
                                             <a download href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]) . ">
-                                                Download
+                                                download
                                             </a>
                                             <br />";
             }
