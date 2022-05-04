@@ -17,7 +17,7 @@
 
             $Contact = $SMTPMAILER->Send([
                 'address' => "wpatbilisicongress@gmail.com",
-                'subject' => "Mail From Site By: " . 
+                'subject' => "Contact From: " . 
                             $_POST["firstname"] . $_POST["lastname"] . 
                             $_POST["email"] . ", About: " . $_POST["subject"],
                 'body' => $_POST["body"]
