@@ -131,6 +131,36 @@
                                                                 ]);
             }
 
+            $_POST["uploadFiles"] = "";
+
+            if($_POST["eposter_file"] != "") {
+                $_POST["uploadFiles"] .= "  <h2><span>Eposter</span></h2>
+                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]) . ">
+                                                Download
+                                            </a>
+                                            <br />";
+            }
+
+            if($_POST["abstract_file"] != "") {
+                $_POST["uploadFiles"] .= "  <h2><span>Abstraction</span></h2>
+                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]) . ">
+                                                Download
+                                            </a>
+                                            <br />";
+            }
+
+            if($_POST["eposter_audio"] != "") {
+                $_POST["uploadFiles"] .= "  <h2><span>Eposter Audio</span></h2>
+                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]) . ">
+                                                Download
+                                            </a>
+                                            <br />";
+            }
+
+            $_POST["eposter_file"] = "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]);
+            $_POST["abstract_file"] = "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]);
+            $_POST["eposter_audio"] = "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]);
+
             $_POST["authors"] = $authors;
             $_POST["keywords"] = $keywords;
             $_POST["affiliations"] = $affiliations;
@@ -158,23 +188,13 @@
             $CustomerResponse = $SMTPMAILER->Send([
                 'address' => $_POST["mainEmail"],
                 'subject' => "Proposal Abstraction Confirmation / WPA Thematic Congress Tbilisi 2022",
-                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html"),
-                'attachments' => [
-                    'abstract_file' => $_POST["abstract_file"],
-                    'eposter_file' => $_POST["eposter_file"],
-                    'eposter_audio' => $_POST["eposter_audio"]
-                ]
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html")
             ]);
 
             $AdminResponse = $SMTPMAILER->Send([
                 'address' => 'wpatbilisicongress@gmail.com',
                 'subject' => "Abstraction  By: " .  $_POST["mainEmail"],
-                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html"),
-                'attachments' => [
-                    'abstract_file' => $_POST["abstract_file"],
-                    'eposter_file' => $_POST["eposter_file"],
-                    'eposter_audio' => $_POST["eposter_audio"]
-                ]
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html")
             ]);
             
             return [
