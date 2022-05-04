@@ -134,24 +134,27 @@
             $_POST["uploadFiles"] = "";
 
             if($_POST["eposter_file"] != "") {
+                $file = explode('/',$_POST["eposter_file"]);
                 $_POST["uploadFiles"] .= "  <h2><span>Eposter</span></h2>
-                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]) . " target='_blank' download>
+                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]) . " target='_blank' download='" . $file[COUNT($file)-1] . "'>
                                                 Download
                                             </a>
                                             <br />";
             }
 
             if($_POST["abstract_file"] != "") {
+                $file = explode('/',$_POST["abstract_file"]);
                 $_POST["uploadFiles"] .= "  <h2><span>Abstraction</span></h2>
-                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]) . " target='_blank' download>
+                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]) . " target='_blank' download='" .  $file[COUNT($file)-1] . "'>
                                                 download
                                             </a>
                                             <br />";
             }
 
             if($_POST["eposter_audio"] != "") {
+                $file = explode('/',$_POST["eposter_audio"]);
                 $_POST["uploadFiles"] .= "  <h2><span>Eposter Audio</span></h2>
-                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]) . " target='_blank' download>
+                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]) . " target='_blank' download='" .  $file[COUNT($file)-1] . "'>
                                                 Download
                                             </a>
                                             <br />";
