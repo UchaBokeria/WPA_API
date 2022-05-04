@@ -156,11 +156,7 @@
                                             </a>
                                             <br />";
             }
-
-            $_POST["eposter_file"] = "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]);
-            $_POST["abstract_file"] = "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]);
-            $_POST["eposter_audio"] = "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]);
-
+            
             $_POST["authors"] = $authors;
             $_POST["keywords"] = $keywords;
             $_POST["affiliations"] = $affiliations;
