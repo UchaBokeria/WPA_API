@@ -135,7 +135,7 @@
 
             if($_POST["eposter_file"] != "") {
                 $_POST["uploadFiles"] .= "  <h2><span>Eposter</span></h2>
-                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]) . ">
+                                            <a download href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_file"]) . ">
                                                 Download
                                             </a>
                                             <br />";
@@ -143,7 +143,7 @@
 
             if($_POST["abstract_file"] != "") {
                 $_POST["uploadFiles"] .= "  <h2><span>Abstraction</span></h2>
-                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]) . ">
+                                            <a download href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["abstract_file"]) . ">
                                                 Download
                                             </a>
                                             <br />";
@@ -151,7 +151,7 @@
 
             if($_POST["eposter_audio"] != "") {
                 $_POST["uploadFiles"] .= "  <h2><span>Eposter Audio</span></h2>
-                                            <a href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]) . ">
+                                            <a download href=" . "https://wpatbilisicongress.com/" . str_replace("../", "", $_POST["eposter_audio"]) . ">
                                                 Download
                                             </a>
                                             <br />";
