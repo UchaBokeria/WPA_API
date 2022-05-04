@@ -70,17 +70,17 @@
             $mail->Body = $this->Options['body'];
             $mail->addAddress($this->Options['address']);
 
-                foreach ($this->Options["attachments"] as $key => $value) {
-                    $value = str_replace("../", "", $value);
-                    $file = explode("/", $value);
-                    if($file[COUNT($file)-1] != '') {
-                        //var_dump(["https://wpatbilisicongress.com/$value",$file[COUNT($file)-1]]);
-                        $mail->addAttachment(
-                            "https://wpatbilisicongress.com/$value",
-                            $file[COUNT($file)-1]
-                        );
-                    }
-                }
+                // foreach ($this->Options["attachments"] as $key => $value) {
+                //     $value = str_replace("../", "", $value);
+                //     $file = explode("/", $value);
+                //     if($file[COUNT($file)-1] != '') {
+                //         //var_dump(["https://wpatbilisicongress.com/$value",$file[COUNT($file)-1]]);
+                //         $mail->addAttachment(
+                //             "https://wpatbilisicongress.com/$value",
+                //             $file[COUNT($file)-1]
+                //         );
+                //     }
+                // }
             /* /
             $mail->SMTPOptions = array(
                 'ssl' => array(
