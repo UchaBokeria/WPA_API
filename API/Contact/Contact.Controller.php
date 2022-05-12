@@ -16,7 +16,7 @@
             $ip = IP_ADDRESS;
 
             $Contact = $SMTPMAILER->Send([
-                'address' => "ucha1bokeria@gmail.com",
+                'address' => "wpatbilisicongress@gmail.com",
                 'subject' => "Contact From: " . 
                             $_POST["firstname"] ." " . $_POST["lastname"] . 
                             $_POST["email"] . ", About: " . $_POST["subject"],
