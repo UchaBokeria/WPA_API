@@ -18,9 +18,9 @@
             $Contact = $SMTPMAILER->Send([
                 'address' => "wpatbilisicongress@gmail.com",
                 'subject' => "Contact From: " . 
-                            $_POST["firstname"] . $_POST["lastname"] . 
+                            $_POST["firstname"] ." " . $_POST["lastname"] . 
                             $_POST["email"] . ", About: " . $_POST["subject"],
-                'body' => $_POST["body"]
+                'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Contact.Template.html")
             ]);
             
             if($Contact["error"]) 
