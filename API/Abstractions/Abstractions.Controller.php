@@ -63,7 +63,7 @@
 
             foreach ($_POST['affiliations'] as $key => $value) {
                 $affiliations .= "  <tr>
-                                            <td>Affiliation " . $value["affiliation_number"] . "</td>
+                                            <td> " . $value["affiliation_number"] . "</td>
                                             <td>" . $value["institute_company"] . "</td>
                                             <td>" . $value["city"] . "</td>
                                             <td>" . $value["country"] . "</td>
@@ -88,7 +88,7 @@
             foreach ($_POST['authors'] as $value) {
                 
                 $authors .= "   <tr>
-                                    <td>Author $index</td>
+                                    <td> $index</td>
                                     <td>$value[initials]</td>
                                     <td>$value[last_name]</td>
                                     <td>
