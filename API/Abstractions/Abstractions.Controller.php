@@ -25,7 +25,7 @@
             if(!parent::Exists()) return [ 'error' => true, 'msg'=> 'Token is Wrong' ];
 
             $_POST["mainEmail"] = $result[0]["email"];
-            $_POST["fullname"] = $result[0]["fullname"];
+            $_POST["user"] = $result[0]["fullname"];
             $_POST["salutation"] = $result[0]["salutation"];
 
             parent::SET("   INSERT INTO Abstractions SET    title = :title,
