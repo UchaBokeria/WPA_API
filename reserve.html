@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+    * {
+      text-decoration: none;
+      box-sizing: border-box;
+      list-style-type: none;
+    }
+
+    body {
+      background-color: #fdfdfd;
+      font-family: "Open Sans", sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      min-height: 500px;
+      margin: 0 auto;
+    }
+    .header-logo-wrapper {
+      width: 100%;
+    }
+
+    .header-logo-wrapper img {
+      width: 100%;
+    }
+
+    .logo-wrapper {
+      height: 55px;
+    }
+
+    .logo-wrapper img {
+      height: 100%;
+    }
+
+    .mail-wrapper {
+      border: 1px solid #e2e2e2;
+      width: 100%;
+      height: 100%;
+      padding: 25px 50px;
+      margin: 30px 0 45px;
+      overflow-x: auto;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 400;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .important {
+      font-weight: 600;
+    }
+    .link {
+      color: #bc1a21;
+      font-weight: 600;
+    }
+    .reset-btn {
+      background-color: rgb(189, 27, 33);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgb(255, 255, 255);
+      border-radius: 5px;
+      height: 50px;
+      max-width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      outline: none;
+      border: 2px solid transparent;
+      transition: all 0.3s ease-out 0s;
+      margin: 30px auto;
+    }
+    .mail {
+      color: #15c;
+    }
+    .copyright {
+      font-size: 12px;
+      margin: 30px 0 15px;
+      text-align: center;
+    }
+    .links-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 520px;
+      width: 100%;
+    }
+    .links-wrapper li {
+      display: inline-block;
+    }
+    .links-wrapper li a {
+      font-size: 14px;
+      color: #15c;
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      background-color: #eaeef5;
+      padding: 10px;
+    }
+    h2 span {
+      font-weight: 600;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+    }
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid #fff;
+    }
+    th,
+    td {
+      padding: 10px;
+    }
+
+    .proposer {
+      background-color: #e4e0e0;
+      color: #000;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .proposer .title {
+      background-color: #cdcdcd;
+    }
+
+    .chairs th {
+      background-color: #7190c1;
+      color: #fff;
+      text-align: left;
+      font-weight: 500;
+    }
+    .chairs td {
+      background-color: #eaeef5;
+      color: #000;
+      text-align: left;
+      font-weight: 500;
+    }
+    .chairs,
+    .presenters {
+      margin-top: 50px;
+    }
+    .presenters {
+      margin-bottom: 50px;
+    }
+    .presenters th {
+      background-color: #bd1b21;
+      color: #fff;
+      text-align: left;
+      font-weight: 500;
+    }
+    .presenters td {
+      background-color: #ffd2d3;
+      color: #000;
+      text-align: left;
+      font-weight: 500;
+    }
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-logo-wrapper">
+        <a href="https://wpatbilisicongress.com/" target="_blank">
+          <img
+            src="https://wpatbilisicongress.com/mail-logo.png"
+            alt="WPA Tbilisi Congress"
+          />
+        </a>
+      </div>
+      <div class="mail-wrapper">
+        <h1>Dear {salutation} {user},</h1>
+        <p>
+          Your Abstract for
+          <a class="mail" href="https://wpatbilisicongress.com/" target="_blank"
+            >WPA Thematic Congress Tbilisi 2022
+          </a>
+          has been submitted successfully. Thank you!
+        </p>
+        <div style="overflow-x: auto">
+          <table class="proposer">
+            <tr>
+              <td class="title">Proposer Name</td>
+              <td>{user}</td>
+            </tr>
+            <tr>
+              <td class="title">Proposer Email</td>
+              <td>{mainEmail}</td>
+            </tr>
+            <tr>
+              <td class="title">Presentation Preference</td>
+              <td>{preference}</td>
+            </tr>
+            <tr>
+              <td class="title">Title</td>
+              <td>{title}</td>
+            </tr>
+            <tr>
+              <td class="title">Topic</td>
+              <td>{topics}</td>
+            </tr>
+            {uploadFiles}
+          </table>
+        </div>
+        <br />
+        <div style="overflow-x: auto">
+          <table class="presenters">
+            <tr>
+              <th>Author</th>
+              <th>Initial(s)</th>
+              <th>Last name</th>
+              <th>Affiliation number(s)</th>
+            </tr>
+            {authors}
+          </table>
+        </div>
+        <div style="overflow-x: auto">
+          <table class="chairs">
+            <tr>
+              <th style="width: 50px">Affiliations</th>
+              <th>Institute / Company</th>
+              <th>City</th>
+              <th>Country</th>
+            </tr>
+            {affiliations}
+          </table>
+        </div>
+        <br />
+        <h2><span>Keywords</span></h2>
+        {keywords}
+        <br />
+        <h2><span>Introduction</span></h2>
+        <p>{introduction}</p>
+        <br />
+        <h2><span>Objectives</span></h2>
+        <p>{objectives}</p>
+        <br />
+        <h2><span>Methods</span></h2>
+        <p>{methods}</p>
+        <br />
+        <h2><span>Results</span></h2>
+        <p>{results}</p>
+        <br />
+        <h2><span>Conclusion</span></h2>
+        <p>{conclusion}</p>
+        <br />
+        <p>
+          You will be informed no later than August 1, 2022 the Scientific
+          Committee’s decision whether your abstract is accepted.
+        </p>
+        <p>
+          Kind regards, <br />
+          The Congress Secretariat
+        </p>
+      </div>
+      <div style="text-align: center" class="logo-wrapper">
+        <a
+          style="height: 100%"
+          href="https://wpatbilisicongress.com/"
+          target="_blank"
+        >
+          <img
+            src="https://wpatbilisicongress.com/mail-logo-2.png"
+            alt="WPA Tbilisi Congress"
+          />
+        </a>
+      </div>
+      <p class="copyright">
+        Copyright © 2022 WPA Tbilisi Congress. All Rights Reserved.
+      </p>
+      <ul class="links-wrapper">
+        <li><a href="https://wpatbilisicongress.com/login">Sign in</a></li>
+        <li>
+          <a href="https://wpatbilisicongress.com/registration">Register</a>
+        </li>
+        <li>
+          <a href="https://wpatbilisicongress.com/abstract-submission"
+            >Submit Abstract</a
+          >
+        </li>
+        <li>
+          <a href="https://wpatbilisicongress.com/symposium">Submit Proposal</a>
+        </li>
+        <li><a href="https://wpatbilisicongress.com/faq">FAQs</a></li>
+        <li><a href="https://wpatbilisicongress.com/contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
