@@ -195,7 +195,7 @@
             
             $CustomerResponse = $SMTPMAILER->Send([
                 'address' => $_POST["mainEmail"],
-                'subject' => "Proposal Abstraction Confirmation / WPA Thematic Congress Tbilisi 2022",
+                'subject' => " Abstract submission confirmation /WPA Thematic Congress Tbilisi 2022",
                 'body' => $SMTPMAILER->TemplateBuild($_POST, "./Sources/Doc/Abstractions.Template.html")
             ]);
 
