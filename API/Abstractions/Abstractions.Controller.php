@@ -81,7 +81,7 @@
                                                                             'city' => $value["city"],
                                                                             'country' => $value["country"],
                                                                         ]);
-
+                $index++;
             }
 
             $index = 1;
@@ -118,6 +118,7 @@
                 
             }
 
+            $index = 1;
             foreach ($_POST['keywords'] as $value) {
                 foreach ($value as $Templateval) 
                     $_POST["keyword_$index"] = $Templateval;
