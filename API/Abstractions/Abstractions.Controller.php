@@ -236,6 +236,10 @@
             $chmod = "0777";
             chmod($directory, octdec($chmod));
             $fname = explode(".",$file["name"]);
+
+            if(COUNT($fname) > 2) 
+                return ['error' => true, 'msg' => 'Only one dot can be in the file name'];
+             
             $uniqueName = $fname[0] . "-" . date('y_m_d-h_m_s') . $id . "." . $fname[1];
             
             $target = $directory . $uniqueName;
