@@ -37,6 +37,20 @@ class Banking extends Database
 
         if (GUARDIAN['error']) return GUARDIAN;
 
+        $TBC = new URLRequest();
+
+        $payment = $TBC->request([
+          'Body' => '',
+          'Method' => 'GET',
+          'URL' => $this->URL,
+          'Headers' => [ 
+              'Authorization:  Bearer ' . $this->Token,
+              'Content-Type: application/json'
+          ],
+          'return' => 'decode',
+        ]);
+
+
         $result = parent::GET(
             "  SELECT  email,
                                             salutation,
