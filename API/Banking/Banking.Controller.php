@@ -21,6 +21,7 @@ class Banking extends Database
     public function __construct($options)
     {
 
+        parent::__construct();
         $this->TBC = new URLRequest();
         $this->url = $this->baseURL."/".$this->version."/".$this->testURL."/";
 
