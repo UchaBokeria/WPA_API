@@ -18,15 +18,14 @@ class Banking extends Database
 
     private $production = false;
 
-    public function __construct($options)
+    public function __construct()
     {
 
         parent::__construct();
         $this->TBC = new URLRequest();
         $this->url = $this->baseURL."/".$this->version."/".$this->testURL."/";
 
-        if ($options["production"]) {
-            $this->production = true;
+        if ($this->production) {
             $this->url = $this->baseURL;
         }
 
