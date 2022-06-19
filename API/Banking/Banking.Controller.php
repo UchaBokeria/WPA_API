@@ -38,10 +38,10 @@ class Banking extends Database
         return ['commingsoon' => true];
     }
 
-    private function GetToken() 
+    public function GetToken() 
     {
 
-        $this->TOKEN = $this->TBC->request([
+        return $this->TBC->request([
           'Body' => '',
           'Method' => 'POST',
           'URL' => $this->URL . "access-token",
@@ -52,7 +52,7 @@ class Banking extends Database
             'Accept: application/json'
           ],
           'return' => 'decode',
-        ])["access_token"];
+        ]);
 
     }
 
