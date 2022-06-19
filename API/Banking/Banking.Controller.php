@@ -3,6 +3,7 @@
 class Banking extends Database
 {
 
+    private $TBC;
     private $url;
     private $baseURL = 'https://api.tbcbank.ge';
     private $testURL = 'tpay';
@@ -10,8 +11,8 @@ class Banking extends Database
     private $version = 'v1';
     private $TOKEN  = '';
 
-    private $APIKEY = 'vtlwtlA6jV2Mmg11i3fGlIKoqPEyYSkG';
-    private $SECRET = 'zjcuxVYGzDSmc4Yn';
+    private $APIKEY = 'cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF';
+    private $SECRET = 'GYcPcZyGUJKiV9As';
     private $APPID  = '755084f6-b71a-4964-bd3b-a071a34d498c';
 
 
@@ -20,6 +21,7 @@ class Banking extends Database
     public function __construct($options)
     {
 
+        $this->TBC = new URLRequest();
         $this->url = $this->baseURL."/".$this->version."/".$this->testURL."/";
 
         if ($options["production"]) {
@@ -38,9 +40,7 @@ class Banking extends Database
     private function GetToken() 
     {
 
-        $TBC = new URLRequest();
-
-        $this->TOKEN = $TBC->request([
+        $this->TOKEN = $this->TBC->request([
           'Body' => '',
           'Method' => 'POST',
           'URL' => $this->URL . "access-token",
@@ -62,9 +62,7 @@ class Banking extends Database
 
         $this->GetToken();
 
-        $TBC = new URLRequest();
-
-        return $TBC->request([
+        return $this->TBC->request([
           'Body' => '',
           'Method' => 'POST',
           'URL' => $this->URL . "payments",
