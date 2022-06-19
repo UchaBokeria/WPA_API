@@ -20,7 +20,9 @@
 
 
 class URLRequest {
-  
+
+  public function __construct() {}
+
   /**
    * CONSTRUCT REQUEST
    * Parameters:
