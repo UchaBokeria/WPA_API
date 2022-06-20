@@ -46,7 +46,7 @@ class Banking extends Database
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-          CURLOPT_URL => '$this->baseURL/access-token',
+          CURLOPT_URL => "$this->baseURL/access-token",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
