@@ -25,6 +25,7 @@ class Banking extends Database
     {
 
         parent::__construct();
+        $this->CURL = curl_init();
         $this->TBC = new URLRequest();
         $this->url = $this->baseURL."/".$this->version."/".$this->testURL."/";
 
@@ -44,10 +45,9 @@ class Banking extends Database
     public function GetToken() 
     {
 
-        $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/access-token',
+        curl_setopt_array($this->CURL, array(
+          CURLOPT_URL => '$this->baseURL/access-token',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
@@ -62,9 +62,9 @@ class Banking extends Database
           ),
         ));
         
-        $response = curl_exec($curl);
-
-        return json_decode($response,true)["access_token"];
+        $response = curl_exec($this->CURL);
+        $this->TOKEN = json_decode($response,true)["access_token"];
+        return $this->TOKEN;
 
     }
 
