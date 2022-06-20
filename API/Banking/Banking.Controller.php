@@ -18,7 +18,6 @@ class Banking extends Database
     private $APIKEY    = 'cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF';
     private $APPID     = '755084f6-b71a-4964-bd3b-a071a34d498c';
 
-
     private $production = false;
 
     public function __construct()
@@ -26,22 +25,13 @@ class Banking extends Database
 
         parent::__construct();
         $this->TBC = new URLRequest();
+
         $this->url = $this->baseURL."/".$this->version."/".$this->testURL."";
-
-        if ($this->production) {
-            $this->url = $this->baseURL;
-        }
-
+        if ($this->production) $this->url = $this->baseURL;
+        
     }
 
-
-    public function Read()
-    {
-        return ['commingsoon' => true];
-
-    }
-
-    public function GetToken() 
+    private function GetToken() 
     {
 
         $curl = curl_init();
@@ -70,13 +60,12 @@ class Banking extends Database
     {
 
         if (GUARDIAN['error']) return GUARDIAN;
-
         $this->GetToken();
 
         return $this->TBC->request([
           'Body' => '',
           'Method' => 'POST',
-          'URL' => $this->URL . "payments",
+          'URL' => "$this->URL/payments",
           'postFields' => '{
             "amount": {
                 "currency":"GEL",
@@ -110,7 +99,7 @@ class Banking extends Database
             'Authorization: Bearer ' . $this->TOKEN,
           ],
           'return' => 'decode',
-        ])["access_token"];
+        ]);
         
     }
 
