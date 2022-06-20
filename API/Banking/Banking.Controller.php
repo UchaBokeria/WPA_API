@@ -38,31 +38,28 @@ class Banking extends Database
     public function Read()
     {
         return ['commingsoon' => true];
+
+        
+        curl_setopt_array(null ,array(
+            CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/access-token',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => 'client_Id=7000753&client_secret=GYcPcZyGUJKiV9As',
+            CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/x-www-form-urlencoded',
+            'apikey: cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF'
+            ),
+        ));
     }
 
     public function GetToken() 
     {
-        
-$curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/access-token',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS => 'client_Id=7000753&client_secret=GYcPcZyGUJKiV9As',
-  CURLOPT_HTTPHEADER => array(
-    'Content-Type: application/x-www-form-urlencoded',
-    'apikey: cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF'
-  ),
-));
-
-$response = curl_exec($curl);
-var_dump($response);die();
         var_dump([
             'Body' => '',
             'Method' => 'POST',
