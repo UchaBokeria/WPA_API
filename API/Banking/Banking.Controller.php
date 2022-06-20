@@ -48,9 +48,9 @@ class Banking extends Database
             'URL' => $this->url . "access-token",
             'postFields' => "client_Id=$this->clientID&client_secret=$this->SECRET",
             'Headers' => [ 
-              'Content-Type: application/x-www-form-urlencoded',
-              'apikey: ' . $this->APIKEY,
-              'Accept: application/json'
+              'Content-Type: application/x-www-form-urlencoded,
+               apikey: ' . $this->APIKEY .',
+              Accept: application/json'
             ],
             'return' => 'decode',
         ]);
