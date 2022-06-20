@@ -5,15 +5,18 @@ class Banking extends Database
 
     private $TBC;
     private $url;
-    private $baseURL = 'https://api.tbcbank.ge';
-    private $testURL = 'tpay';
-    private $clientID = '7000753';
-    private $version = 'v1';
-    private $TOKEN  = '';
 
-    private $APIKEY = 'cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF';
-    private $SECRET = 'GYcPcZyGUJKiV9As';
-    private $APPID  = '755084f6-b71a-4964-bd3b-a071a34d498c';
+    private $TOKEN     = '';
+
+    private $baseURL   = 'https://api.tbcbank.ge';
+    private $testURL   = 'tpay';
+    private $version   = 'v1';
+
+    private $clientID  = '7000753';
+    private $SECRET    = 'GYcPcZyGUJKiV9As';
+
+    private $APIKEY    = 'cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF';
+    private $APPID     = '755084f6-b71a-4964-bd3b-a071a34d498c';
 
 
     private $production = false;
@@ -42,7 +45,7 @@ class Banking extends Database
         var_dump([
             'Body' => '',
             'Method' => 'POST',
-            'URL' => $this->URL . "access-token",
+            'URL' => $this->url . "access-token",
             'postFields' => "client_Id=$this->clientID&client_secret=$this->SECRET",
             'Headers' => [ 
               'Content-Type: application/x-www-form-urlencoded',
