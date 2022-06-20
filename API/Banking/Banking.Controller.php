@@ -26,7 +26,7 @@ class Banking extends Database
 
         parent::__construct();
         $this->TBC = new URLRequest();
-        $this->url = $this->baseURL."/".$this->version."/".$this->testURL."/";
+        $this->url = $this->baseURL."/".$this->version."/".$this->testURL."";
 
         if ($this->production) {
             $this->url = $this->baseURL;
