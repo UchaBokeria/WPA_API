@@ -64,7 +64,7 @@ class Banking extends Database
         
         $response = curl_exec($curl);
 
-        return json_decode($response,true);
+        return json_decode($response,true)["access_token"];
 
     }
 
