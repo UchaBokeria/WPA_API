@@ -25,7 +25,6 @@ class Banking extends Database
     {
 
         parent::__construct();
-        $this->CURL = curl_init();
         $this->TBC = new URLRequest();
         $this->url = $this->baseURL."/".$this->version."/".$this->testURL."/";
 
@@ -45,8 +44,8 @@ class Banking extends Database
     public function GetToken() 
     {
 
-
-        curl_setopt_array($this->CURL, array(
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
           CURLOPT_URL => '$this->baseURL/access-token',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
@@ -62,7 +61,7 @@ class Banking extends Database
           ),
         ));
         
-        $response = curl_exec($this->CURL);
+        $response = curl_exec($curl);
         $this->TOKEN = json_decode($response,true)["access_token"];
         return $this->TOKEN;
 
