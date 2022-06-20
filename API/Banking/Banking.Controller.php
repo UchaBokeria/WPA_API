@@ -72,16 +72,15 @@ class Banking extends Database
             'return' => 'decode',
         ]);
         return $this->TBC->request([
-          'Body' => '',
-          'Method' => 'POST',
-          'URL' => $this->URL . "access-token",
-          'postFields' => "client_Id=$this->clientID&client_secret=$this->SECRET",
-          'Headers' => [ 
-            'Content-Type: application/x-www-form-urlencoded',
-            'apikey: ' . $this->APIKEY,
-            'Accept: application/json'
-          ],
-          'return' => 'decode',
+            'Body' => '',
+            'Method' => 'POST',
+            'URL' => $this->url . "access-token",
+            'postFields' => "client_Id=$this->clientID&client_secret=$this->SECRET",
+            'Headers' => [
+                'Content-Type: application/x-www-form-urlencoded',
+                'apikey: '.$this->APIKEY
+            ],
+            'return' => 'decode',
         ]);
 
     }
