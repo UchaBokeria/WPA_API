@@ -39,7 +39,18 @@ class Banking extends Database
 
     public function GetToken() 
     {
-
+        var_dump([
+            'Body' => '',
+            'Method' => 'POST',
+            'URL' => $this->URL . "access-token",
+            'postFields' => "client_Id=$this->clientID&client_secret=$this->SECRET",
+            'Headers' => [ 
+              'Content-Type: application/x-www-form-urlencoded',
+              'apikey: ' . $this->APIKEY,
+              'Accept: application/json'
+            ],
+            'return' => 'decode',
+        ]);
         return $this->TBC->request([
           'Body' => '',
           'Method' => 'POST',
