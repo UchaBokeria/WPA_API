@@ -17,6 +17,7 @@ class Banking extends Database
 
     private $APIKEY    = 'cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF';
     private $APPID     = '755084f6-b71a-4964-bd3b-a071a34d498c';
+    private $CallBack  = '';
 
     private $production = false;
 
@@ -60,47 +61,91 @@ class Banking extends Database
     {
 
         if (GUARDIAN['error']) return GUARDIAN;
-        $this->GetToken();
 
-        return $this->TBC->request([
-          'Body' => '',
-          'Method' => 'POST',
-          'URL' => "$this->URL/payments",
-          'postFields' => '{
-            "amount": {
-                "currency":"GEL",
-                "total": 200,
-                "subTotal": 0,
-                "tax": 0,
-                "shipping": 0
-            },
-            "returnurl":"shopping.ge/callback",
-            "extra":"GE60TB7226145063300008",
-            "userIpAddress" : "127.0.0.1",
-            "expirationMinutes" : "5",
-            "methods" : [5, 7, 8],
-            "installmentProducts":
-            [
-               {"Name":"t1","Price":100,"Quantity":1},
-               {"Name":"t1","Price":50,"Quantity":1},
-               {"Name":"t1","Price":50,"Quantity":1}
-            ],
-            "callbackUrl":"https://google.com", 
-            "preAuth":true,
-            "language":"EN",
-            "merchantPaymentId": "P123123",
-            "saveCard": true,
-            "saveCardToDate": "0321"
-        }
-        ',
-          'Headers' => [ 
+        $this->GetToken();
+        $curl = curl_init();
+
+        $Product = [
+            "id" => 1,
+            "Name" => "product",
+            "Price" => 1,
+            "Quantity" => 1
+        ];
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments',
+          CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'
+            {
+                "amount": {
+                    "currency": "GEL",
+                    "total": ' . $Product["price"] . '
+                },
+                "installmentProducts": [' . json_encode($Product) . '],
+                "preAuth": true,
+                "language":"EN",
+                "saveCard": false,
+                "returnurl": "https://wpatbilisicongress.com/",
+                "callbackUrl": "' . $this->CallBack . '", 
+                "expirationMinutes" : "5",
+                "userIpAddress" : "127.0.0.1",
+                "methods" : [5, 7, 8]
+            }
+        ', CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
-            'apikey: ' . $this->APIKEY,
-            'Authorization: Bearer ' . $this->TOKEN,
-          ],
-          'return' => 'decode',
-        ]);
+            'apikey: '.$this->APIKEY,
+            'Authorization: Bearer '. $this->TOKEN
+          ),
+        ));
+
+        $jsonResult = curl_exec($curl);
+        $Result = json_decode($jsonResult,true);
+
+        $fname = date('y-m-d');
+        file_put_contents('./Sources/Logs/'. $fname, "$jsonResult," ,FILE_APPEND);
         
+        parent::SET("INSERT INTO `payments` SET `user_id` = :user_id, 
+                                                `datetime` = NOW(), 
+                                                `price` = :price, 
+                                                `product_id` = :product_id, 
+                                                `payId` = :payId, 
+                                                `merchantPaymentId` = :merchantPaymentId, 
+                                                `status` = :status, 
+                                                `currency` = :currency, 
+                                                `amount` = :amount, 
+                                                `links` = :links,
+                                                `transactionId` = :transactionId, 
+                                                `preAuth` = :preAuth, 
+                                                `recId` = :recId, 
+                                                `expirationMinutes` = :expirationMinutes, 
+                                                `httpStatusCode` = :httpStatusCode, 
+                                                `developerMessage` = :developerMessage, 
+                                                `userMessage` = :userMessage, 
+                                                `ipAddress` = :ipAddress, 
+                                                `rawJson` = :rawJson ; ",
+                                            [
+                                                "user_id"           => $_SESSION["USERID"],
+                                                "price"             => $Product["price"],
+                                                "product_id"        => $Product["id"],
+                                                "payId"             => $Result["payId"],
+                                                "merchantPaymentId" => $Result["merchantPaymentId"],
+                                                "status"            => $Result["status"],
+                                                "currency"          => $Result["currency"],
+                                                "amount"            => $Result["amount"],
+                                                "links"             => json_encode($Result["links"]),
+                                                "transactionId"     => $Result["transactionId"],
+                                                "preAuth"           => $Result["preAuth"],
+                                                "recId"             => $Result["recId"],
+                                                "expirationMinutes" => $Result["expirationMinutes"],
+                                                "httpStatusCode"    => $Result["httpStatusCode"],
+                                                "developerMessage"  => $Result["developerMessage"],
+                                                "userMessage"       => $Result["userMessage"],
+                                                "ipAddress"         => IP_ADDRESS,
+                                                "rawJson"           => $jsonResult
+                                            ]);
+        return ['error' => $Result["httpStatusCode"] == 200 , 'msg' => $Result["links"] ];
     }
 
     public function Update()
