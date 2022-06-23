@@ -32,7 +32,7 @@ class Banking extends Database
         
     }
 
-    private function GetToken() 
+    public function GetToken() 
     {
 
         $curl = curl_init();
