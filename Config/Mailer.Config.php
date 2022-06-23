@@ -5,7 +5,7 @@ define('MAILISHTML', true);
 define('MAILSMTPAUTH', "true");
 define('MAILUSERNAME', 'wpatbilisicongress@gmail.com');
 define('MAILFORMNAME', 'wpatbilisicongress@gmail.com');
-define('MAILPASSWORD', 'wpatbilisi2022');
+define('MAILPASSWORD', 'yvxpcbvtjjsqnhii');
 define('MAILSMTPSECURE', 'ssl');
 define('MAILPORT', '465');
 define('MAILDEBUGOUTPUT', 'html');
