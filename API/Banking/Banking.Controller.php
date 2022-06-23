@@ -66,7 +66,7 @@ class Banking extends Database
         $curl = curl_init();
         
         $id = $_POST["product_id"];
-        $Product = parent::GET("    SELECT * FROM product WHERE id = '$id'")[0];
+        $Product = parent::GET("    SELECT * FROM product WHERE id = :id; ", ['id'=>$id] )[0];
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments',
@@ -140,7 +140,7 @@ class Banking extends Database
                                                 "userMessage"       => $Result["userMessage"],
                                                 "ipAddress"         => IP_ADDRESS,
                                                 "rawJson"           => $jsonResult
-                                            ]);
+                                            ],true);die();
         return ['error' => $Result["httpStatusCode"] == 200 , 'msg' => $Result["links"] ];
     }
 
