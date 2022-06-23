@@ -64,13 +64,9 @@ class Banking extends Database
 
         $this->GetToken();
         $curl = curl_init();
-
-        $Product = [
-            "id" => 1,
-            "Name" => "product",
-            "Price" => 1,
-            "Quantity" => 1
-        ];
+        
+        $id = $_POST["product_id"];
+        $Product = parent::GET("    SELECT * FROM product WHERE id = '$id'")[0];
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments',
