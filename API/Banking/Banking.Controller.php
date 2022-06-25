@@ -83,7 +83,7 @@ class Banking extends Database
                 "preAuth": true,
                 "language":"EN",
                 "saveCard": false,
-                "returnurl": "https://wpatbilisicongress.com/",
+                "returnurl": "https://wpatbilisicongress.com/success",
                 "callbackUrl": "' . $this->CallBack . '", 
                 "expirationMinutes" : "5",
                 "userIpAddress" : "127.0.0.1",
