@@ -3,9 +3,41 @@
     class Simposyums extends Database
     {
          
-        public function Read()
+        public function FixUnsends()
         {
-            return ['commingsoon' => true];
+            
+            $Result = [];
+
+            $Reserve = parent::GET(" SELECT * FROM Simposyums WHERE id IN() ; ");
+
+            foreach ($Reserve as $key => $value) {
+                
+                global $SMTPMAILER;
+            
+                $CustomerResponse = $SMTPMAILER->Send([
+                    'address' => $value["mainEmail"],
+                    'subject' => "Proposal Submission Confirmation / WPA Thematic Congress Tbilisi 2022",
+                    'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
+                ]);
+
+                $AdminResponse = $SMTPMAILER->Send([
+                    'address' => 'wpatbilisicongress@gmail.com',
+                    'subject' => "Symposium  By: " .  $value["mainEmail"],
+                    'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
+                ]);
+
+                array_push($Result, [
+                    'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
+                    'msg' => "  Symposium  Has Been Created. " . 
+                                $CustomerResponse["msg"] . " To The Customer, " . 
+                                $AdminResponse["msg"] . " To The Administrator "
+                ]);
+
+            }
+            
+
+            return $Result;
+
         }
 
         public function Create()
