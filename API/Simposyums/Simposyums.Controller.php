@@ -8,10 +8,45 @@
             
             $Result = [];
 
-            $Reserve = parent::GET(" SELECT * FROM Simposyums WHERE id IN() ; ");
+            $Reserve = parent::GET("SELECT salutation AS salutation,
+                                            fullname AS user,
+                                            email AS email,
+                                            title AS title,
+                                            text AS description,
+                                            chair_name AS chair_name,
+                                            chair_country AS chair_country,
+                                            chair_email AS chair_email,
+                                            cochair_name AS cochair_name,
+                                            cochair_country AS cochair_country,
+                                            cochair_email AS cochair_email,
+                                            123123 AS presentator_name_1,
+                                            123123 AS presentator_country_1,
+                                            123123 AS presentator_email_1,
+                                            123123 AS presentator_title_1,
+                                            123123 AS presentator_name_2,
+                                            123123 AS presentator_country_2,
+                                            123123 AS presentator_email_2,
+                                            123123 AS presentator_title_2,
+                                            123123 AS presentator_name_3,
+                                            123123 AS presentator_country_3,
+                                            123123 AS presentator_email_3,
+                                            123123 AS presentator_title_3,
+                                            123123 AS presentator_name_4,
+                                            123123 AS presentator_country_4,
+                                            123123 AS presentator_email_4,
+                                            123123 AS presentator_title_4
+                                    LEFT JOIN users ON users.email = Simposyums.email
+                                    WHERE Simposyums.id IN( 123,
+                                                            124,
+                                                            125,
+                                                            126,
+                                                            132,
+                                                            133,
+                                                            134,
+                                                            136 ) ; ");
 
             foreach ($Reserve as $key => $value) {
-                
+
                 global $SMTPMAILER;
             
                 $CustomerResponse = $SMTPMAILER->Send([
