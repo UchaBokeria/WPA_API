@@ -55,7 +55,7 @@
 
             $mail = new PHPMailer();
             
-            $mail->SMTPDebug = 4;
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->SMTPAuth = MAILSMTPAUTH; 
             $mail->Host = MAILHOST;
