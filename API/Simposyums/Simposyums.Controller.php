@@ -10,8 +10,8 @@
 
             $Reserve = parent::GET("SELECT salutation AS salutation,
                                             fullname AS user,
-                                            email AS email,
-                                            title AS title,
+                                            Simposyums.email AS email,
+                                            Simposyums.title AS title,
                                             text AS description,
                                             chair_name AS chair_name,
                                             chair_country AS chair_country,
@@ -19,23 +19,18 @@
                                             cochair_name AS cochair_name,
                                             cochair_country AS cochair_country,
                                             cochair_email AS cochair_email,
-                                            123123 AS presentator_name_1,
-                                            123123 AS presentator_country_1,
-                                            123123 AS presentator_email_1,
-                                            123123 AS presentator_title_1,
-                                            123123 AS presentator_name_2,
-                                            123123 AS presentator_country_2,
-                                            123123 AS presentator_email_2,
-                                            123123 AS presentator_title_2,
-                                            123123 AS presentator_name_3,
-                                            123123 AS presentator_country_3,
-                                            123123 AS presentator_email_3,
-                                            123123 AS presentator_title_3,
-                                            123123 AS presentator_name_4,
-                                            123123 AS presentator_country_4,
-                                            123123 AS presentator_email_4,
-                                            123123 AS presentator_title_4
+                                            JSON_ARRAY(
+                                                GROUP_CONCAT(JSON_OBJECT(
+                                                    'title',   Simposyum_presentators.title,
+                                                    'name',    Simposyum_presentators.`name`,
+                                                    'email',   Simposyum_presentators.email,
+                                                    'country', Simposyum_presentators.country
+                                                )
+                                            )) AS presentator
+                                        
+                                    FROM Simposyums
                                     LEFT JOIN users ON users.email = Simposyums.email
+                                    LEFT JOIN Simposyum_presentators ON Simposyum_presentators.simposyum_id = Simposyums.id
                                     WHERE Simposyums.id IN( 123,
                                                             124,
                                                             125,
@@ -43,30 +38,40 @@
                                                             132,
                                                             133,
                                                             134,
-                                                            136 ) ; ");
+                                                            136 )
+                                    GROUP BY Simposyums.id	; ");
 
             foreach ($Reserve as $key => $value) {
 
-                global $SMTPMAILER;
+                $index = 1;
+                foreach ($value['presentator'] as $prese) {
+                    foreach ($prese as $key => $Templateval) 
+                        $value["presentator_$key"."_"."$index"] = $Templateval;
+                        $index++;
+                    }
+
+                array_push($Result,$value);
+
+                // global $SMTPMAILER;
             
-                $CustomerResponse = $SMTPMAILER->Send([
-                    'address' => $value["mainEmail"],
-                    'subject' => "Proposal Submission Confirmation / WPA Thematic Congress Tbilisi 2022",
-                    'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
-                ]);
+                // $CustomerResponse = $SMTPMAILER->Send([
+                //     'address' => $value["mainEmail"],
+                //     'subject' => "Proposal Submission Confirmation / WPA Thematic Congress Tbilisi 2022",
+                //     'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
+                // ]);
 
-                $AdminResponse = $SMTPMAILER->Send([
-                    'address' => 'wpatbilisicongress@gmail.com',
-                    'subject' => "Symposium  By: " .  $value["mainEmail"],
-                    'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
-                ]);
+                // $AdminResponse = $SMTPMAILER->Send([
+                //     'address' => 'wpatbilisicongress@gmail.com',
+                //     'subject' => "Symposium  By: " .  $value["mainEmail"],
+                //     'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
+                // ]);
 
-                array_push($Result, [
-                    'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
-                    'msg' => "  Symposium  Has Been Created. " . 
-                                $CustomerResponse["msg"] . " To The Customer, " . 
-                                $AdminResponse["msg"] . " To The Administrator "
-                ]);
+                // array_push($Result, [
+                //     'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
+                //     'msg' => "  Symposium  Has Been Created. " . 
+                //                 $CustomerResponse["msg"] . " To The Customer, " . 
+                //                 $AdminResponse["msg"] . " To The Administrator "
+                // ]);
 
             }
             
