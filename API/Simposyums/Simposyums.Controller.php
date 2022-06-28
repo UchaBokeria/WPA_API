@@ -33,7 +33,14 @@
                                     FROM Simposyums
                                     LEFT JOIN users ON users.email = Simposyums.email
                                     LEFT JOIN Simposyum_presentators ON Simposyum_presentators.simposyum_id = Simposyums.id
-                                    WHERE Simposyums.id IN( 135 )
+                                    WHERE Simposyums.id IN( 123,
+                                                            124,
+                                                            125,
+                                                            126,
+                                                            132,
+                                                            133,
+                                                            134,
+                                                            136 )
                                     GROUP BY Simposyums.id	; ");
 
             foreach ($Reserve as $key => $value) {
