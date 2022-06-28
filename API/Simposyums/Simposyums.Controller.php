@@ -8,7 +8,8 @@
             
             $Result = [];
 
-            $Reserve = parent::GET("SELECT salutation AS salutation,
+            $Reserve = parent::GET("SELECT  salutation AS salutation,
+                                            fullname AS fullname,
                                             fullname AS user,
                                             Simposyums.email AS email,
                                             Simposyums.email AS mainEmail,
@@ -39,10 +40,10 @@
 
                 $index = 1;
                 foreach (json_decode(stripcslashes($value['presentator']),true) as $prese) {
-                    foreach (json_decode(stripcslashes($prese),true) as $key => $Templateval) 
+                    foreach ($prese as $key => $Templateval) 
                         $value["presentator_$key"."_"."$index"] = $Templateval;
-                        $index++;
-                    }
+                    $index++;
+                }
 
                 global $SMTPMAILER;
             
