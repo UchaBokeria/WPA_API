@@ -19,13 +19,14 @@
                                             cochair_name AS cochair_name,
                                             cochair_country AS cochair_country,
                                             cochair_email AS cochair_email,
-                                            JSON_ARRAY(
-                                                GROUP_CONCAT(JSON_OBJECT(
-                                                    'title',   Simposyum_presentators.title,
-                                                    'name',    Simposyum_presentators.`name`,
-                                                    'email',   Simposyum_presentators.email,
-                                                    'country', Simposyum_presentators.country
-                                                )
+                                            JSON_UNQUOTE(
+                                                JSON_ARRAY(
+                                                    GROUP_CONCAT(JSON_OBJECT(
+                                                        'title',   Simposyum_presentators.title,
+                                                        'name',    Simposyum_presentators.`name`,
+                                                        'email',   Simposyum_presentators.email,
+                                                        'country', Simposyum_presentators.country
+                                                ))
                                             )) AS presentator
                                         
                                     FROM Simposyums
