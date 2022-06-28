@@ -59,6 +59,10 @@
 
                 array_push($Result, [
                     'params' => $value,
+                    'log' => [
+                        'CustomerResponse' => $CustomerResponse["error"],
+                        'AdminResponse' => $AdminResponse["error"]
+                    ],
                     'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
                     'msg' => "  Symposium  Has Been Created. " . 
                                 $CustomerResponse["msg"] . " To The Customer, " . 
