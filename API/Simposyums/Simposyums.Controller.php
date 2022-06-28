@@ -11,6 +11,7 @@
             $Reserve = parent::GET("SELECT salutation AS salutation,
                                             fullname AS user,
                                             Simposyums.email AS email,
+                                            Simposyums.email AS mainEmail,
                                             Simposyums.title AS title,
                                             text AS description,
                                             chair_name AS chair_name,
