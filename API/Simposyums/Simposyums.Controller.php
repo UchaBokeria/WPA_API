@@ -43,10 +43,9 @@
 
             foreach ($Reserve as $key => $value) {
 
-                $index = 1;
                 foreach ($value['presentator'] as $prese) {
+                    $index = 1;
                     foreach ($prese as $key => $Templateval) 
-                    var_dump($Templateval);
                         $value["presentator_$key"."_"."$index"] = json_decode(stripcslashes($Templateval),true);
                         $index++;
                     }
