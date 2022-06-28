@@ -46,6 +46,7 @@
                 $index = 1;
                 foreach ($value['presentator'] as $prese) {
                     foreach ($prese as $key => $Templateval) 
+                    var_dump($Templateval);
                         $value["presentator_$key"."_"."$index"] = json_decode(stripcslashes($Templateval),true);
                         $index++;
                     }
