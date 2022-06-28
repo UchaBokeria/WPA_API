@@ -46,7 +46,7 @@
                 $index = 1;
                 foreach ($value['presentator'] as $prese) {
                     foreach ($prese as $key => $Templateval) 
-                        $value["presentator_$key"."_"."$index"] = $Templateval;
+                        $value["presentator_$key"."_"."$index"] = json_decode($Templateval,true);
                         $index++;
                     }
 
