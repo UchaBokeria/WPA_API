@@ -31,14 +31,7 @@
                                     FROM Simposyums
                                     LEFT JOIN users ON users.email = Simposyums.email
                                     LEFT JOIN Simposyum_presentators ON Simposyum_presentators.simposyum_id = Simposyums.id
-                                    WHERE Simposyums.id IN( 123,
-                                                            124,
-                                                            125,
-                                                            126,
-                                                            132,
-                                                            133,
-                                                            134,
-                                                            136 )
+                                    WHERE Simposyums.id IN( 135 )
                                     GROUP BY Simposyums.id	; ");
 
             foreach ($Reserve as $key => $value) {
@@ -50,28 +43,26 @@
                         $index++;
                     }
 
-                array_push($Result,$value);
-
-                // global $SMTPMAILER;
+                global $SMTPMAILER;
             
-                // $CustomerResponse = $SMTPMAILER->Send([
-                //     'address' => $value["mainEmail"],
-                //     'subject' => "Proposal Submission Confirmation / WPA Thematic Congress Tbilisi 2022",
-                //     'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
-                // ]);
+                $CustomerResponse = $SMTPMAILER->Send([
+                    'address' => $value["mainEmail"],
+                    'subject' => "Proposal Submission Confirmation / WPA Thematic Congress Tbilisi 2022",
+                    'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
+                ]);
 
-                // $AdminResponse = $SMTPMAILER->Send([
-                //     'address' => 'wpatbilisicongress@gmail.com',
-                //     'subject' => "Symposium  By: " .  $value["mainEmail"],
-                //     'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
-                // ]);
+                $AdminResponse = $SMTPMAILER->Send([
+                    'address' => 'wpatbilisicongress@gmail.com',
+                    'subject' => "Symposium  By: " .  $value["mainEmail"],
+                    'body' => $SMTPMAILER->TemplateBuild($value, "./Sources/Doc/Simposyums.Template.html")
+                ]);
 
-                // array_push($Result, [
-                //     'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
-                //     'msg' => "  Symposium  Has Been Created. " . 
-                //                 $CustomerResponse["msg"] . " To The Customer, " . 
-                //                 $AdminResponse["msg"] . " To The Administrator "
-                // ]);
+                array_push($Result, [
+                    'error' => ($CustomerResponse["error"] || $AdminResponse["error"]) , 
+                    'msg' => "  Symposium  Has Been Created. " . 
+                                $CustomerResponse["msg"] . " To The Customer, " . 
+                                $AdminResponse["msg"] . " To The Administrator "
+                ]);
 
             }
             
