@@ -43,10 +43,10 @@
 
             foreach ($Reserve as $key => $value) {
 
-                foreach ($value['presentator'] as $prese) {
-                    $index = 1;
+                $index = 1;
+                foreach (json_decode(stripcslashes($value['presentator']),true) as $prese) {
                     foreach ($prese as $key => $Templateval) 
-                        $value["presentator_$key"."_"."$index"] = json_decode(stripcslashes($Templateval),true);
+                        $value["presentator_$key"."_"."$index"] = $Templateval;
                         $index++;
                     }
 
