@@ -111,7 +111,7 @@
                                                         'fullname' => $_POST["fullname"],
                                                         'user_id' => $email[0]["id"],
                                                         'email' => $_POST["email"],
-                                                        'text' => $_POST["text"],
+                                                        'text' => $_POST["description"],
                                                         'title' => $_POST["title"],
                                                         'chair_name' => $_POST["chair_name"],
                                                         'chair_country' => $_POST["chair_country"],
