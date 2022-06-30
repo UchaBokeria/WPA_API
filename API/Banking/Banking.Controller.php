@@ -57,6 +57,37 @@ class Banking extends Database
 
     }
 
+    public function CheckPayment()
+    {
+        
+
+        if (GUARDIAN['error']) return GUARDIAN;
+
+        $this->GetToken();
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $_POST["payment_id"],
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_HTTPHEADER => [
+            'Content-Type: application/x-www-form-urlencoded',
+            'apikey: ' . $this->APIKEY,
+            'Authorization: Bearer ' . $this->TOKEN
+          ],
+        ]);
+        
+        $response = curl_exec($curl);
+        $res = json_decode($response, true);
+        curl_close($curl);
+        return ['error' => ($res["status"] == "Failed"), 'msg' => $res["status"]];
+    }
+
     public function Create()
     {
 
@@ -83,7 +114,7 @@ class Banking extends Database
                 "preAuth": true,
                 "language":"EN",
                 "saveCard": false,
-                "returnurl": "https://wpatbilisicongress.com/registration/success",
+                "returnurl": "https://wpatbilisicongress.com/registration/getPaymentResult",
                 "callbackUrl": "' . $this->CallBack . '", 
                 "expirationMinutes" : "5",
                 "userIpAddress" : "127.0.0.1",
