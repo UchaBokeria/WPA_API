@@ -69,7 +69,7 @@ class Banking extends Database
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $payment["payId"],
+          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $payment[0]["payId"],
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
