@@ -13,7 +13,8 @@
             
             if(GUARDIAN['error']) return GUARDIAN;
 
-            $result = parent::GET("  SELECT  email,
+            $result = parent::GET("  SELECT id,
+                                            email,
                                             salutation,
                                             CONCAT(firstname, ' ' , middlename , ' ' , lastname) AS fullname
 
@@ -29,6 +30,7 @@
             $_POST["salutation"] = $result[0]["salutation"];
 
             parent::SET("   INSERT INTO Abstractions SET    title = :title,
+                                                            id = :id,
                                                             topics = :topics,
                                                             preference = :preference,
                                                             introduction = :introduction,
@@ -42,6 +44,7 @@
                                                             createdAt = NOW(); ",
                                                     [
                                                         'title' => $_POST["title"],
+                                                        'id' => $result[0]["id"],
                                                         'topics' => $_POST["topics"],
                                                         'preference' => $_POST["preference"],
                                                         'introduction' => $_POST["introduction"],

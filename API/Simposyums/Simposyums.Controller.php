@@ -90,7 +90,7 @@
             
             if(GUARDIAN['error']) return GUARDIAN;
 
-            $email = parent::GET("SELECT email FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
+            $email = parent::GET("SELECT id,email FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ]);
             if(!parent::Exists()) return [ 'error' => true, 'msg'=> 'Token is Wrong' ];
 
             $_POST["mainEmail"] = $email[0]["email"];
@@ -108,6 +108,7 @@
                                                         created_datetime = NOW(); ",
                                                     [
                                                         'fullname' => $_POST["fullname"],
+                                                        'id' => $email[0]["id"],
                                                         'email' => $_POST["email"],
                                                         'text' => $_POST["text"],
                                                         'title' => $_POST["title"],
