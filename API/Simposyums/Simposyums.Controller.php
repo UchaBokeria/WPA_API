@@ -97,7 +97,7 @@
 
             parent::SET("   INSERT INTO Simposyums SET  fullname = :fullname,
                                                         email = :email,
-                                                        id = :id,
+                                                        user_id = :user_id,
                                                         title = :title,
                                                         text = :text,
                                                         chair_name = :chair_name,
@@ -109,7 +109,7 @@
                                                         created_datetime = NOW(); ",
                                                     [
                                                         'fullname' => $_POST["fullname"],
-                                                        'id' => $email[0]["id"],
+                                                        'user_id' => $email[0]["id"],
                                                         'email' => $_POST["email"],
                                                         'text' => $_POST["text"],
                                                         'title' => $_POST["title"],

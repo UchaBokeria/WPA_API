@@ -30,7 +30,7 @@
             $_POST["salutation"] = $result[0]["salutation"];
 
             parent::SET("   INSERT INTO Abstractions SET    title = :title,
-                                                            id = :id,
+                                                            user_id = :user_id,
                                                             topics = :topics,
                                                             preference = :preference,
                                                             introduction = :introduction,
@@ -44,7 +44,7 @@
                                                             createdAt = NOW(); ",
                                                     [
                                                         'title' => $_POST["title"],
-                                                        'id' => $result[0]["id"],
+                                                        'user_id' => $result[0]["id"],
                                                         'topics' => $_POST["topics"],
                                                         'preference' => $_POST["preference"],
                                                         'introduction' => $_POST["introduction"],
