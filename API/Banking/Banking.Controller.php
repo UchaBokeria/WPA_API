@@ -59,7 +59,6 @@ class Banking extends Database
 
     public function CheckPayment()
     {
-        
 
         if (GUARDIAN['error']) return GUARDIAN;
 
