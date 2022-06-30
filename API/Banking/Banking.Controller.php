@@ -61,12 +61,15 @@ class Banking extends Database
     {
 
         if (GUARDIAN['error']) return GUARDIAN;
-
+        $payment = parent::GET(" SELECT payId FROM payments WHERE user_id = :user_id ORDER BY id DESC LIMIT 1;", [ "user_id" => $_POST["user_id"] ]);
+        if(!parent::Exists())
+            return ['error' => true, 'msg' => 'no info on payment_id'];
+        
         $this->GetToken();
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $_POST["payment_id"],
+          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $payment["payId"],
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
