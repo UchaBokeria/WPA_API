@@ -97,6 +97,7 @@
 
             parent::SET("   INSERT INTO Simposyums SET  fullname = :fullname,
                                                         email = :email,
+                                                        id = :id,
                                                         title = :title,
                                                         text = :text,
                                                         chair_name = :chair_name,
