@@ -62,7 +62,7 @@ class Banking extends Database
 
         if (GUARDIAN['error']) return GUARDIAN;
         $user_id = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ])[0]["id"];
-        echo $user_id;
+
         $payment = parent::GET(" SELECT payId FROM payments WHERE user_id = :user_id ORDER BY id DESC LIMIT 1;", [ "user_id" => $user_id ]);
         if(!parent::Exists())
             return ['error' => true, 'msg' => 'no info on payment_id'];
