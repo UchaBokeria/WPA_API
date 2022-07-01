@@ -66,7 +66,7 @@ class Banking extends Database
         $this->GetToken();
         $curl = curl_init();
         $id = $_POST["product_id"];
-        $Product = parent::GET(" SELECT * FROM product WHERE id = 7; ", ['id'=>$id] )[0];
+        $Product = parent::GET(" SELECT * FROM product WHERE id = :id; ", ['id'=>$id] )[0];
         
         curl_setopt_array($curl, [
             CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments',
@@ -137,5 +137,38 @@ class Banking extends Database
                                             ]);
 
         return ['error' => $Result["httpStatusCode"] == 200 , 'msg' => $Result["links"] ];
+    }
+
+    public function sendMail()
+    {
+        
+        $match = parent::GET("SELECT salutation, CONCAT(firstname,' ',middlename,' ',lastname) AS fullname, email, price FROM payments LEFT JOIN users ON users.id = payments.user_id WHERE payId = :pay_id " , [ "pay_id" => $_POST["payment_id"] ]);
+        if(parent::Exists()) {
+            $Object = $match[0];
+            global $SMTPMAILER;
+            echo "mail has started";
+            
+            $CustomerResponse = $SMTPMAILER->Send([
+                'address' => $Object["email"],
+                'subject' => " Register /WPA Thematic Congress Tbilisi 2022 ",
+                'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/payment.html")
+            ]);
+            
+            $AdminResponse = $SMTPMAILER->Send([
+                'address' => 'wpatbilisicongress@gmail.com',
+                'subject' => " Register /WPA Thematic Congress Tbilisi 2022 ",
+                'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/payment.html")
+            ]);
+            
+            $res = [
+                'payment_id' => $this->ID,
+                'error' => ($CustomerResponse["error"] || $AdminResponse["error"]),
+                'msg' => "  Abstraction  Has Been Created. " .
+                    $CustomerResponse["msg"] . " To The Customer, " .
+                    $AdminResponse["msg"] . " To The Administrator "
+            ];
+
+            return;
+        }
     }
 }
