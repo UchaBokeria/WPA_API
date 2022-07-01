@@ -76,7 +76,7 @@ class Banking extends Database
             CURLOPT_POSTFIELDS =>'
                 {
                     "amount": {
-                        "currency": "GEL",
+                        "currency": "EUR",
                         "total": ' . $Product["price"] . '
                     },
                     "installmentProducts": [' . json_encode($Product) . '],
