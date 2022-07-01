@@ -12,7 +12,7 @@ class Banking extends Database
     private $SECRET    = 'GYcPcZyGUJKiV9As';
     private $APIKEY    = 'cJDsjKJn4JFs9F0PD7e0ps3XB4YBOeiF';
     private $APPID     = '755084f6-b71a-4964-bd3b-a071a34d498c';
-    private $CallBack  = 'https://wpatbilisicongress.com/callback.php';
+    private $CallBack  = 'http://callback.wpatbilisicongress.com/callback/';
 
     public function __construct()
     {
