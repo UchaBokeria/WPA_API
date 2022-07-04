@@ -17,10 +17,10 @@ class Banking extends Database
     public function __construct()
     {
         parent::__construct();
-        $this->url = $this->baseURL."/".$this->version."/".$this->testURL."";
+        $this->url = $this->baseURL . "/" . $this->version . "/" . $this->testURL . "";
     }
 
-    public function GetToken() 
+    public function GetToken()
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
@@ -28,32 +28,32 @@ class Banking extends Database
             CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => "client_Id=$this->clientID&client_secret=$this->SECRET",
-            CURLOPT_HTTPHEADER => array('Content-Type: application/x-www-form-urlencoded','apikey: '.$this->APIKEY),
+            CURLOPT_HTTPHEADER => array('Content-Type: application/x-www-form-urlencoded', 'apikey: ' . $this->APIKEY),
         ]);
-        
-        $this->TOKEN = json_decode(curl_exec($curl),true)["access_token"];
+
+        $this->TOKEN = json_decode(curl_exec($curl), true)["access_token"];
         return $this->TOKEN;
     }
 
     public function CheckPayment()
     {
         if (GUARDIAN['error']) return GUARDIAN;
-        $user_id = parent::GET(" SELECT id FROM users WHERE token = :token ; ", [ 'token' => $_POST["token"] ])[0]["id"];
-        $payment = parent::GET(" SELECT payId FROM payments WHERE user_id = :user_id ORDER BY id DESC LIMIT 1;", [ "user_id" => $user_id ]);
+        $user_id = parent::GET(" SELECT id FROM users WHERE token = :token ; ", ['token' => $_POST["token"]])[0]["id"];
+        $payment = parent::GET(" SELECT payId FROM payments WHERE user_id = :user_id ORDER BY id DESC LIMIT 1;", ["user_id" => $user_id]);
 
-        if(!parent::Exists())
+        if (!parent::Exists())
             return ['error' => true, 'msg' => 'no info on payment_id'];
-        
+
         $this->GetToken();
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-          CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $payment[0]["payId"],
-          CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '', CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'GET',
-          CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded','apikey: ' . $this->APIKEY,'Authorization: Bearer ' . $this->TOKEN],
+            CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments/' . $payment[0]["payId"],
+            CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '', CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded', 'apikey: ' . $this->APIKEY, 'Authorization: Bearer ' . $this->TOKEN],
         ]);
-        
+
         $res = json_decode(curl_exec($curl), true);
         curl_close($curl);
 
@@ -66,14 +66,14 @@ class Banking extends Database
         $this->GetToken();
         $curl = curl_init();
         $id = $_POST["product_id"];
-        $Product = parent::GET(" SELECT * FROM product WHERE id = :id; ", ['id'=>$id] )[0];
-        
+        $Product = parent::GET(" SELECT * FROM product WHERE id = 7; ", ['id' => $id])[0];
+
         curl_setopt_array($curl, [
             CURLOPT_URL => 'https://api.tbcbank.ge/v1/tpay/payments',
             CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'
+            CURLOPT_POSTFIELDS => '
                 {
                     "amount": {
                         "currency": "EUR",
@@ -88,15 +88,16 @@ class Banking extends Database
                     "expirationMinutes" : "5",
                     "userIpAddress" : "127.0.0.1",
                     "methods" : [5, 7, 8]
-                }', 
-            CURLOPT_HTTPHEADER => [ 'Content-Type: application/json', 'apikey: '.$this->APIKEY, 'Authorization: Bearer '. $this->TOKEN ],
+                }',
+            CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'apikey: ' . $this->APIKEY, 'Authorization: Bearer ' . $this->TOKEN],
         ]);
 
         $jsonResult = curl_exec($curl);
-        $Result = json_decode($jsonResult,true);
-        file_put_contents('./Sources/Logs/'. date('y-m-d'), "$jsonResult," ,FILE_APPEND);
-        
-        parent::SET("INSERT INTO `payments` SET `user_id` = :user_id, 
+        $Result = json_decode($jsonResult, true);
+        file_put_contents('./Sources/Logs/' . date('y-m-d'), "$jsonResult,", FILE_APPEND);
+
+        parent::SET(
+            "INSERT INTO `payments` SET `user_id` = :user_id, 
                                                 `datetime` = NOW(), 
                                                 `price` = :price, 
                                                 `product_id` = :product_id, 
@@ -115,51 +116,52 @@ class Banking extends Database
                                                 `userMessage` = :userMessage, 
                                                 `ipAddress` = :ipAddress, 
                                                 `rawJson` = :rawJson ; ",
-                                            [
-                                                "user_id"           => $_SESSION["USERID"],
-                                                "price"             => $Product["price"],
-                                                "product_id"        => $Product["id"],
-                                                "payId"             => $Result["payId"],
-                                                "merchantPaymentId" => $Result["merchantPaymentId"],
-                                                "status"            => $Result["status"],
-                                                "currency"          => $Result["currency"],
-                                                "amount"            => $Result["amount"],
-                                                "links"             => json_encode($Result["links"]),
-                                                "transactionId"     => $Result["transactionId"],
-                                                "preAuth"           => $Result["preAuth"],
-                                                "recId"             => $Result["recId"],
-                                                "expirationMinutes" => $Result["expirationMinutes"],
-                                                "httpStatusCode"    => $Result["httpStatusCode"],
-                                                "developerMessage"  => $Result["developerMessage"],
-                                                "userMessage"       => $Result["userMessage"],
-                                                "ipAddress"         => IP_ADDRESS,
-                                                "rawJson"           => $jsonResult
-                                            ]);
+            [
+                "user_id"           => $_SESSION["USERID"],
+                "price"             => $Product["price"],
+                "product_id"        => $Product["id"],
+                "payId"             => $Result["payId"],
+                "merchantPaymentId" => $Result["merchantPaymentId"],
+                "status"            => $Result["status"],
+                "currency"          => $Result["currency"],
+                "amount"            => $Result["amount"],
+                "links"             => json_encode($Result["links"]),
+                "transactionId"     => $Result["transactionId"],
+                "preAuth"           => $Result["preAuth"],
+                "recId"             => $Result["recId"],
+                "expirationMinutes" => $Result["expirationMinutes"],
+                "httpStatusCode"    => $Result["httpStatusCode"],
+                "developerMessage"  => $Result["developerMessage"],
+                "userMessage"       => $Result["userMessage"],
+                "ipAddress"         => IP_ADDRESS,
+                "rawJson"           => $jsonResult
+            ]
+        );
 
-        return ['error' => $Result["httpStatusCode"] == 200 , 'msg' => $Result["links"] ];
+        return ['error' => $Result["httpStatusCode"] == 200, 'msg' => $Result["links"]];
     }
 
     public function sendMail()
     {
-        
-        $match = parent::GET("SELECT salutation, CONCAT(firstname,' ',middlename,' ',lastname) AS fullname, email, price FROM payments LEFT JOIN users ON users.id = payments.user_id WHERE payId = :pay_id " , [ "pay_id" => $_POST["payment_id"] ]);
-        if(parent::Exists()) {
+
+        $match = parent::GET("SELECT salutation, CONCAT(firstname,' ',middlename,' ',lastname) AS fullname, email, price FROM payments LEFT JOIN users ON users.id = payments.user_id WHERE payId = :pay_id ", ["pay_id" => $_POST["payment_id"]]);
+        if (parent::Exists()) {
             $Object = $match[0];
             global $SMTPMAILER;
             echo "mail has started";
-            
+
             $CustomerResponse = $SMTPMAILER->Send([
                 'address' => $Object["email"],
                 'subject' => " Register /WPA Thematic Congress Tbilisi 2022 ",
                 'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/payment.html")
             ]);
-            
+
             $AdminResponse = $SMTPMAILER->Send([
                 'address' => 'wpatbilisicongress@gmail.com',
                 'subject' => " Register /WPA Thematic Congress Tbilisi 2022 ",
                 'body' => $SMTPMAILER->TemplateBuild($Object, "./Sources/Doc/payment.html")
             ]);
-            
+
             $res = [
                 'payment_id' => $this->ID,
                 'error' => ($CustomerResponse["error"] || $AdminResponse["error"]),
